@@ -41,6 +41,8 @@ async function dibujarVentas(params) {
             <div class="media-body">
             <h6 class="mt-1 font-weight-bold"><a href="#!">${fecha} N° ${element.idVenta}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$${element.totalV}</span></a></h6>
             <p class="text-muted">Usuario: ${element.user}.</p>
+
+            <a><h3><span class="waves-effect waves-light rgba-white-slight btn-block badge badge-primary float-right noselect">Detalles</span></h3></a>
             </div>
             </div>
             <hr>
@@ -60,6 +62,8 @@ async function dibujarVentas(params) {
             <div class="media-body">
             <h6 class="mt-1 font-weight-bold"><a href="#!">${fecha} N° ${element.idVenta}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$${element.totalV}</span></a></h6>
             <p class="text-muted">Usuario: ${element.user}.</p>
+            
+            <a><h3><span class="waves-effect waves-light rgba-white-slight btn-block badge badge-primary float-right noselect">Detalles</span></h3></a>
             </div>
             </div>
             <hr>`
