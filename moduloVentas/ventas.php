@@ -99,7 +99,7 @@ if(!isset($_SESSION['user'])){
                     </tfoot>
                 </table>
             </div> 
-            <button id="btnGuardarVenta" class="btn btn-blue">Guardar</button>
+            <button id="btnGuardarVenta" class="btn btn-blue">Imprimir ticket</button>
         </div>
     </section>
     
@@ -107,14 +107,14 @@ if(!isset($_SESSION['user'])){
     <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
  <!-- Central Modal Medium Success -->
- <div class="modal fade" id="exito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+ <div class="modal fade" id="pregunta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
    aria-hidden="true">
    <div class="modal-dialog modal-notify modal-success" role="document">
      <!--Content-->
      <div class="modal-content">
        <!--Header-->
        <div class="modal-header">
-         <p class="heading lead">Completado.</p>
+         <p class="heading lead">Desea terminar la operacion?</p>
 
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true" class="white-text">&times;</span>
@@ -125,13 +125,14 @@ if(!isset($_SESSION['user'])){
        <div class="modal-body">
          <div class="text-center">
            <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-           <p>Venta realizada correctamente.</p>
+           <!-- <p>Venta realizada correctamente.</p> -->
          </div>
        </div>
 
        <!--Footer-->
        <div class="modal-footer">
          <a type="button" class="btn btn-success waves-effect" data-dismiss="modal">Cerrar</a>
+         <button class="btn btn-success waves-effect" id="imprimeTicket">imprimir ticket</button>
        </div>
      </div>
      <!--/.Content-->

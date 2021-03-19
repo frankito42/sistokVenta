@@ -23,14 +23,15 @@ $idVenta=$conn->lastInsertId();
 
 
 foreach ($productos as $key) {
-    $sqlInsetDetailVenta="INSERT INTO `detalleventa`(`idV`, `nombreProducto`, `cantidadV`, `precio`, `fecha`)
-                        VALUES (:idVenta,:nombre,:cantidadV,:precio,:fecha)";
+    $sqlInsetDetailVenta="INSERT INTO `detalleventa`(`idV`, `nombreProducto`, `cantidadV`, `precio`, `fecha`,idArticulo)
+                        VALUES (:idVenta,:nombre,:cantidadV,:precio,:fecha,:idArticulo)";
     $insertDetailVenta=$conn->prepare($sqlInsetDetailVenta);
     $insertDetailVenta->bindParam(":idVenta",$idVenta);
     $insertDetailVenta->bindParam(":nombre",$key[1]);
     $insertDetailVenta->bindParam(":cantidadV",$key[2]);
     $insertDetailVenta->bindParam(":precio",$key[3]);
     $insertDetailVenta->bindParam(":fecha",$fecha);
+    $insertDetailVenta->bindParam(":idArticulo",$key[0]);
     $insertDetailVenta->execute();
 }
 

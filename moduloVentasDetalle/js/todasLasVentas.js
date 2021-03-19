@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded",async function() {
     console.log("DOM fully loaded and parsed");
     await ListarVentas()
     await ventasToDay()
+    await ventasMonth()
 });
 
 async function ListarVentas() {
@@ -18,6 +19,14 @@ async function ventasToDay() {
     .then(async (data)=>{
         console.log(data)
         document.getElementById("ventasDelDia").innerHTML="$"+data.totalDia
+    });
+}
+async function ventasMonth() {
+    fetch('../consultasAzar/totalMensual.php')
+    .then(response => response.json())
+    .then(async (data)=>{
+        console.log(data)
+        document.getElementById("ventasDelMes").innerHTML="$"+data.totalMes
     });
 }
 
@@ -88,7 +97,7 @@ async function abrirDetalle(id) {
             suma+=element.cantidadV*element.precio
             if(i==data.length-1){
                 detail+=`
-                <div style="border-radius: 5px;padding: 1%;margin: -1%;" class="media hoverable">
+                <div style="margin: -1%;" class="media">
                 <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
                 <div class="media-body">
                 <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$${element.precio}</span></a></h6>
@@ -97,7 +106,7 @@ async function abrirDetalle(id) {
                 </div>
                 <hr>
     
-                <div style="border-radius: 5px;padding: 1%;margin: -1%;" class="media hoverable">
+                <div style="margin: -1%;" class="media">
                 <i style="color: #007bff;" class="d-flex mr-3 fas fa-cash-register fa-3x"></i>
                 <div class="media-body">
                 <h6 class="mt-1 font-weight-bold"><a href="#!"><span style="font-size: 125%;">TOTAL</span></a><a><span style="font-size: 226%;" class="badge badge-success float-right">$${suma.toFixed(2)}</span></a></h6>
@@ -106,7 +115,7 @@ async function abrirDetalle(id) {
                 `
     
             }else{
-                detail+=`<div style="border-radius: 5px;padding: 1%;margin: -1%;" class="media hoverable">
+                detail+=`<div style="margin: -1%;" class="media">
                 <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
                 <div class="media-body">
                 <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$${element.precio}</span></a></h6>

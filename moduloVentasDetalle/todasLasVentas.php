@@ -138,6 +138,7 @@ if(!isset($_SESSION['user'])){
             </div>
             <div>
                 <!-- <i class="fas fa-chart-bar fa-4x text-black-40"></i> -->
+                <i class="fas fa-dollar-sign fa-4x text-black-40"></i>
             </div>
             </div>
             <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
@@ -154,11 +155,12 @@ if(!isset($_SESSION['user'])){
         <div class="card light-blue lighten-1 white-text">
             <div class="card-body d-flex justify-content-between align-items-center">
             <div>
-                <p class="h2-responsive font-weight-bold mt-n2 mb-0">44</p>
+                <p id="ventasDelMes" class="h2-responsive font-weight-bold mt-n2 mb-0"></p>
                 <p class="mb-0">Ventas del mes</p>
             </div>
             <div>
-                <i class="fas fa-user-plus fa-4x text-black-40"></i>
+                <!-- <i class="fas fa-user-plus fa-4x text-black-40"></i> -->
+                <i class="fas fa-dollar-sign fa-4x text-black-40"></i>
             </div>
             </div>
             <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>

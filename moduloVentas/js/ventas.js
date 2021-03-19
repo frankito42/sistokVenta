@@ -139,6 +139,7 @@ function guardarVenta() {
                     document.getElementById("ProductosVender").innerHTML=""
                     sumarTodo()
                     alert("Venta finalizada.")
+                    $("#pregunta").modal("hide")
                     /* $("#exito").modal("show") */
                     document.getElementById('codigoDeBarra').focus()
                   }
@@ -151,5 +152,18 @@ function guardarVenta() {
 }
 
 
-document.getElementById("btnGuardarVenta").addEventListener("click",guardarVenta)
+document.getElementById("btnGuardarVenta").addEventListener("click",abreModalPregunta)
+document.getElementById("imprimeTicket").addEventListener("click",guardarVenta)
+
+
+
+function abreModalPregunta() {
+    console.log(document.getElementById("ProductosVender").children.length)
+    if (document.getElementById("ProductosVender").children.length>0){
+        $("#pregunta").modal("show")
+    }else{
+        alert("Cargue productos antes de continuar")
+        document.getElementById('codigoDeBarra').focus()
+    }
+}
  
