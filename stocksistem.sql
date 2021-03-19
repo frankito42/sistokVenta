@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-03-2021 a las 20:27:33
+-- Tiempo de generación: 19-03-2021 a las 09:37:20
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -47,11 +47,11 @@ CREATE TABLE `articulos` (
 --
 
 INSERT INTO `articulos` (`articulo`, `nombre`, `costo`, `stockmin`, `cantidad`, `descripcion`, `imagen`, `categoria`, `codBarra`, `precioVenta`, `idEsta`, `idProveedor`) VALUES
-(38, 'xx', '100.00', 1, 480, 'esposas de peluche policia', '', 1, '1', '2000.00', 1, 21),
-(41, 'Potente vibrador con funda de silicona', '1200.00', 1, 60, 'potente vibrador con suave funda de silicona', '', 2, '2', '30548.96', 2, 22),
-(42, 'Disfraz Cotillón Monja Sexy', '100.00', 1, 598, 'disfraz de monja mujer', '', 12, '3', '1344.31', 1, 21),
-(43, 'Disfraz Secretaria Sexy', '2300.00', 1, 1, 'disfraz de secretaria', '', 12, '4', '2454.84', 1, 0),
-(44, 'Disfraz de Presa Sexy', '2800.00', 10, 0, 'hola', '', 12, '5', '2863.96', 1, 0),
+(38, 'xx', '100.00', 1, 463, 'esposas de peluche policia', '', 1, '1', '2000.00', 1, 21),
+(41, 'Potente vibrador con funda de silicona', '1200.00', 1, 54, 'potente vibrador con suave funda de silicona', '', 2, '2', '30548.96', 2, 22),
+(42, 'Disfraz Cotillón Monja Sexy', '100.00', 1, 596, 'disfraz de monja mujer', '', 12, '3', '1344.31', 1, 21),
+(43, 'Disfraz Secretaria Sexy', '2300.00', 1, -1, 'disfraz de secretaria', '', 12, '4', '2454.84', 1, 0),
+(44, 'Disfraz de Presa Sexy', '2800.00', 10, -1, 'hola', '', 12, '5', '2863.96', 1, 0),
 (45, 'Disfraz Mucama Hot', '1900.00', 10, 1, 'chau', '', 12, '6', '1943.43', 1, 0),
 (46, 'dildo doble', '1700.00', 1, 2, 'doble dildo doble corrida', '', 12, '7', '1738.85', 1, 0),
 (47, 'Disfraz Enfermera Sexy', '1200.00', 1, 2, '', '', 12, '8', '1227.42', 1, 0),
@@ -251,51 +251,80 @@ CREATE TABLE `detalleventa` (
   `nombreProducto` varchar(100) NOT NULL,
   `cantidadV` int(11) NOT NULL,
   `precio` decimal(11,2) NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `idArticulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detalleventa`
 --
 
-INSERT INTO `detalleventa` (`idDetalleVenta`, `idV`, `nombreProducto`, `cantidadV`, `precio`, `fecha`) VALUES
-(1, 2, 'xx', 1, '1344.31', '2021-03-14'),
-(2, 2, 'xx', 1, '1344.31', '2021-03-14'),
-(3, 2, 'xx', 1, '1344.31', '2021-03-14'),
-(4, 3, 'xx', 1, '1344.31', '2021-03-14'),
-(5, 4, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-15'),
-(6, 5, 'xx', 1, '1344.31', '2021-03-16'),
-(7, 5, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-16'),
-(8, 5, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-16'),
-(9, 0, 'xx', 1, '1344.31', '2021-03-16'),
-(10, 0, 'xx', 1, '1344.31', '2021-03-16'),
-(11, 0, 'xx', 1, '1344.31', '2021-03-16'),
-(12, 6, 'xx', 1, '1344.31', '2021-03-16'),
-(13, 6, 'xx', 1, '1344.31', '2021-03-16'),
-(14, 6, 'xx', 1, '1344.31', '2021-03-16'),
-(15, 6, 'xx', 1, '1344.31', '2021-03-16'),
-(16, 7, 'xx', 1, '1344.31', '2021-03-16'),
-(17, 8, 'xx', 1, '2000.00', '2021-03-16'),
-(18, 9, 'xx', 1, '2000.00', '2021-03-16'),
-(19, 9, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-16'),
-(20, 9, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-16'),
-(21, 9, 'Potente vibrador con funda de silicona', 32, '30548.96', '2021-03-16'),
-(22, 10, 'xx', 21, '2000.00', '2021-03-16'),
-(23, 10, 'xx', 21, '2000.00', '2021-03-16'),
-(24, 10, 'xx', 21, '2000.00', '2021-03-16'),
-(25, 11, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-16'),
-(26, 11, 'xx', 5, '2000.00', '2021-03-16'),
-(27, 12, 'xx', 1, '2000.00', '2021-03-16'),
-(28, 12, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-16'),
-(29, 12, 'Disfraz Mucama Hot', 1, '1943.43', '2021-03-16'),
-(30, 12, 'Disfraz de Presa Sexy', 1, '2863.96', '2021-03-16'),
-(31, 13, 'xx', 3, '2000.00', '2021-03-16'),
-(32, 13, 'xx', 2, '2000.00', '2021-03-16'),
-(33, 13, 'xx', 2, '2000.00', '2021-03-16'),
-(34, 14, 'xx', 1, '2000.00', '2021-03-17'),
-(35, 14, 'xx', 1, '2000.00', '2021-03-17'),
-(36, 14, 'xx', 1, '2000.00', '2021-03-17'),
-(37, 14, 'xx', 1, '2000.00', '2021-03-17');
+INSERT INTO `detalleventa` (`idDetalleVenta`, `idV`, `nombreProducto`, `cantidadV`, `precio`, `fecha`, `idArticulo`) VALUES
+(1, 2, 'xx', 1, '1344.31', '2021-03-14', 0),
+(2, 2, 'xx', 1, '1344.31', '2021-03-14', 0),
+(3, 2, 'xx', 1, '1344.31', '2021-03-14', 0),
+(4, 3, 'xx', 1, '1344.31', '2021-03-14', 0),
+(5, 4, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-15', 0),
+(6, 5, 'xx', 1, '1344.31', '2021-03-16', 0),
+(7, 5, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-16', 0),
+(8, 5, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-16', 0),
+(9, 0, 'xx', 1, '1344.31', '2021-03-16', 0),
+(10, 0, 'xx', 1, '1344.31', '2021-03-16', 0),
+(11, 0, 'xx', 1, '1344.31', '2021-03-16', 0),
+(12, 6, 'xx', 1, '1344.31', '2021-03-16', 0),
+(13, 6, 'xx', 1, '1344.31', '2021-03-16', 0),
+(14, 6, 'xx', 1, '1344.31', '2021-03-16', 0),
+(15, 6, 'xx', 1, '1344.31', '2021-03-16', 0),
+(16, 7, 'xx', 1, '1344.31', '2021-03-16', 0),
+(17, 8, 'xx', 1, '2000.00', '2021-03-16', 0),
+(18, 9, 'xx', 1, '2000.00', '2021-03-16', 0),
+(19, 9, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-16', 0),
+(20, 9, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-16', 0),
+(21, 9, 'Potente vibrador con funda de silicona', 32, '30548.96', '2021-03-16', 0),
+(22, 10, 'xx', 21, '2000.00', '2021-03-16', 0),
+(23, 10, 'xx', 21, '2000.00', '2021-03-16', 0),
+(24, 10, 'xx', 21, '2000.00', '2021-03-16', 0),
+(25, 11, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-16', 0),
+(26, 11, 'xx', 5, '2000.00', '2021-03-16', 0),
+(27, 12, 'xx', 1, '2000.00', '2021-03-16', 0),
+(28, 12, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-16', 0),
+(29, 12, 'Disfraz Mucama Hot', 1, '1943.43', '2021-03-16', 0),
+(30, 12, 'Disfraz de Presa Sexy', 1, '2863.96', '2021-03-16', 0),
+(31, 13, 'xx', 3, '2000.00', '2021-03-16', 0),
+(32, 13, 'xx', 2, '2000.00', '2021-03-16', 0),
+(33, 13, 'xx', 2, '2000.00', '2021-03-16', 0),
+(34, 14, 'xx', 1, '2000.00', '2021-03-17', 0),
+(35, 14, 'xx', 1, '2000.00', '2021-03-17', 0),
+(36, 14, 'xx', 1, '2000.00', '2021-03-17', 0),
+(37, 14, 'xx', 1, '2000.00', '2021-03-17', 0),
+(38, 15, 'xx', 1, '2000.00', '2021-03-18', 0),
+(39, 15, 'xx', 1, '2000.00', '2021-03-18', 0),
+(40, 15, 'xx', 1, '2000.00', '2021-03-18', 0),
+(41, 16, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-18', 0),
+(42, 16, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-18', 0),
+(43, 17, 'xx', 1, '2000.00', '2021-03-19', 0),
+(44, 17, 'xx', 1, '2000.00', '2021-03-19', 0),
+(45, 17, 'xx', 1, '2000.00', '2021-03-19', 0),
+(46, 18, 'xx', 1, '2000.00', '2021-03-19', 0),
+(47, 18, 'xx', 1, '2000.00', '2021-03-19', 0),
+(48, 18, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-19', 0),
+(49, 18, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-19', 0),
+(50, 18, 'Disfraz Cotillón Monja Sexy', 1, '1344.31', '2021-03-19', 0),
+(51, 18, 'Disfraz Secretaria Sexy', 1, '2454.84', '2021-03-19', 0),
+(52, 18, 'Disfraz de Presa Sexy', 1, '2863.96', '2021-03-19', 0),
+(53, 18, 'Disfraz Secretaria Sexy', 1, '2454.84', '2021-03-19', 0),
+(54, 18, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-19', 0),
+(55, 18, 'xx', 1, '2000.00', '2021-03-19', 0),
+(56, 19, 'xx', 1, '2000.00', '2021-03-19', 38),
+(57, 19, 'xx', 1, '2000.00', '2021-03-19', 38),
+(58, 19, 'xx', 1, '2000.00', '2021-03-19', 38),
+(59, 19, 'xx', 1, '2000.00', '2021-03-19', 38),
+(60, 20, 'xx', 1, '2000.00', '2021-03-19', 38),
+(61, 21, 'xx', 1, '2000.00', '2021-03-19', 38),
+(62, 22, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-19', 41),
+(63, 23, 'xx', 1, '2000.00', '2021-03-19', 38),
+(64, 24, 'Potente vibrador con funda de silicona', 1, '30548.96', '2021-03-19', 41),
+(65, 25, 'xx', 1, '2000.00', '2021-03-19', 38);
 
 -- --------------------------------------------------------
 
@@ -688,7 +717,7 @@ CREATE TABLE `ventas` (
 --
 
 INSERT INTO `ventas` (`idVenta`, `fechaV`, `totalV`, `idUser`) VALUES
-(2, '2021-03-14', '4033.00', 1),
+(2, '2021-02-14', '4033.00', 1),
 (3, '2021-03-14', '1344.00', 1),
 (4, '2021-03-15', '30549.00', 1),
 (5, '2021-03-16', '33237.58', 1),
@@ -700,7 +729,18 @@ INSERT INTO `ventas` (`idVenta`, `fechaV`, `totalV`, `idUser`) VALUES
 (11, '2021-03-16', '40548.96', 1),
 (12, '2021-03-16', '8151.70', 1),
 (13, '2021-03-16', '14000.00', 1),
-(14, '2021-03-17', '8000.00', 1);
+(14, '2021-03-17', '8000.00', 1),
+(15, '2021-03-18', '6000.00', 1),
+(16, '2021-03-18', '31893.27', 1),
+(17, '2021-03-19', '6000.00', 1),
+(18, '2021-03-19', '106764.83', 1),
+(19, '2021-03-19', '8000.00', 1),
+(20, '2021-03-19', '2000.00', 1),
+(21, '2021-03-19', '2000.00', 1),
+(22, '2021-02-19', '30548.96', 1),
+(23, '2021-03-19', '2000.00', 1),
+(24, '2021-03-19', '30548.96', 1),
+(25, '2021-03-19', '2000.00', 1);
 
 --
 -- Índices para tablas volcadas
@@ -780,7 +820,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `detalleventa`
 --
 ALTER TABLE `detalleventa`
-  MODIFY `idDetalleVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idDetalleVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `entrada`
@@ -816,7 +856,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
