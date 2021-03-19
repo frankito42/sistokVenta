@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded",async function() {
     await ventasMonth()
 });
 
+document.getElementById("fechaI").addEventListener("change",async ()=>{
+   await ventasPorFecha()
+})
+document.getElementById("fechaF").addEventListener("change",async ()=>{
+   await ventasPorFecha()
+})
+
+
 async function ListarVentas() {
     fetch('php/listarVentas.php')
     .then(response => response.json())
@@ -29,6 +37,21 @@ async function ventasMonth() {
         document.getElementById("ventasDelMes").innerHTML="$"+data.totalMes
     });
 }
+async function ventasPorFecha() {
+    let fechaI=document.getElementById("fechaI").value
+    let fechaF=document.getElementById("fechaF").value
+    console.log(fechaI)
+    console.log(fechaF)
+
+    document.getElementById("cambiarPorElFiltro").innerHTML=`Fecha de inicio ${fechaI} hasta ${fechaF}`
+
+    fetch(`php/ventasPorFecha.php?fechaI=${fechaI}&fechaF=${fechaF}`)
+    .then(response => response.json())
+    .then(async (data)=>{
+        console.log(data)
+        dibujarVentas(data)
+    });
+}
 
 
 
@@ -41,7 +64,7 @@ async function dibujarVentas(params) {
         /* console.log(params.length)
         console.log(i) */
         fecha=element.fechaV.split("-")
-        fecha=`${fecha[1]}-${fecha[2]}-${fecha[0]}`
+        fecha=`${fecha[2]}-${fecha[1]}-${fecha[0]}`
         console.log(fecha)
         if(i==params.length-1){
             listaVentas+=`

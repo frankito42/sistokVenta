@@ -174,8 +174,19 @@ if(!isset($_SESSION['user'])){
     <!-- Grid row -->
     <div class="card">
       <div class="card-body">
-
-        <h5 class="text-center font-weight-bold mb-4">Ventas del dia <?php echo date("d-m-Y l")?></h5>
+        <div class="row">
+                <div class="col">
+                    <h5 id="cambiarPorElFiltro" class="text-center font-weight-bold mb-4">Ventas del dia <?php echo date("d-m-Y l")?></h5>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col">
+                    <input type="date" id="fechaI" value="<?php echo date("Y-m-d")?>" placeholder="Fecha Inicio" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="date" id="fechaF" value="<?php echo date("Y-m-d")?>" placeholder="Fecha Fin" class="form-control">
+                </div>
+        </div>
 
         <hr>
 
