@@ -112,14 +112,14 @@ if(!isset($_SESSION['user'])){
         <div class="card primary-color white-text">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div>
-                    <p class="h2-responsive font-weight-bold mt-n2 mb-0">150</p>
-                    <p class="mb-0">Lo mas vendido</p>
+                    <p id="masVendido" class="h2-responsive font-weight-bold mt-n2 mb-0"></p>
+                    <p class="mb-0">El mas vendido</p>
                 </div>
             <div>
                 <i class="fas fa-shopping-bag fa-4x text-black-40"></i>
             </div>
             </div>
-                <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
+                <a id="modalMasVendi" class="card-footer footer-hover small text-center white-text border-0 p-2">Mas informacion<i class="fas fa-arrow-circle-right pl-2"></i></a>
         </div>
         <!-- Card -->
 
@@ -141,7 +141,7 @@ if(!isset($_SESSION['user'])){
                 <i class="fas fa-dollar-sign fa-4x text-black-40"></i>
             </div>
             </div>
-            <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
+            <a class="card-footer footer-hover small text-center white-text border-0 p-2">Mas informacion<i class="fas fa-arrow-circle-right pl-2"></i></a>
         </div>
         <!-- Card -->
 
@@ -163,7 +163,7 @@ if(!isset($_SESSION['user'])){
                 <i class="fas fa-dollar-sign fa-4x text-black-40"></i>
             </div>
             </div>
-            <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
+            <a class="card-footer footer-hover small text-center white-text border-0 p-2">Mas informacion<i class="fas fa-arrow-circle-right pl-2"></i></a>
         </div>
         <!-- Card -->
 

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded",async function() {
     await ListarVentas()
     await ventasToDay()
     await ventasMonth()
+    await productosMasVendidos()
 });
 
 document.getElementById("fechaI").addEventListener("change",async ()=>{
@@ -27,6 +28,17 @@ async function ventasToDay() {
     .then(async (data)=>{
         console.log(data)
         document.getElementById("ventasDelDia").innerHTML="$"+data.totalDia
+    });
+}
+async function productosMasVendidos() {
+    fetch('php/productosMasVendidos.php')
+    .then(response => response.json())
+    .then(async (articulosMasVendi)=>{
+        console.log(articulosMasVendi)
+        document.getElementById("masVendido").innerHTML=articulosMasVendi[0].nombreProducto
+        document.getElementById("modalMasVendi").addEventListener("click",()=>{
+            mostrarLosProductosMasVendidos(articulosMasVendi)
+        })
     });
 }
 async function ventasMonth() {
@@ -178,4 +190,67 @@ async function abrirDetalle(id) {
     });
 
 
+}
+
+
+
+async function mostrarLosProductosMasVendidos(productos) {
+
+
+        let detail=``
+        productos.forEach((element,i) => {
+            if(i==productos.length-1){
+                detail+=`
+                <div style="margin: -1%;" class="media">
+                <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
+                <div class="media-body">
+                <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$$$$$$$$$</span></a></h6>
+                <p class="text-muted">cantidad: ${element.cantidadVendida}.</p>            
+                </div>
+                </div>`
+    
+            }else{
+                detail+=`<div style="margin: -1%;" class="media">
+                <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
+                <div class="media-body">
+                <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$$$$$$$$$</span></a></h6>
+                <p class="text-muted">cantidad: ${element.cantidadVendida}.</p>            
+                </div>
+                </div>
+                <hr>`
+            }
+        });
+
+
+
+
+
+
+
+    if(document.getElementById(`todosLosProductosMasVendidos`)){
+        $("#todosLosProductosMasVendidos").modal("show")
+    }else{
+        let modalProductosMasVendidos=`<div class="modal fade right" id="todosLosProductosMasVendidos" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-white">
+                <h5 class="modal-title" id="exampleModalPreviewLabel">Los productos mas vendidos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body row">
+                <div class="col-12 mb-3 mx-auto">
+                ${detail}
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>`
+        $(modalProductosMasVendidos).modal("show")
+
+    }
 }
