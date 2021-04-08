@@ -227,6 +227,32 @@ if(!isset($_SESSION['user'])){
     <!-- //////////////////////////////////////////////////////////////////////// -->
     <!-- //////////////////////////////////////////////////////////////////////// -->
     <!-- //////////////////////////////////////////////////////////////////////// -->
+
+    <!-- To change the direction of the modal animation change .right class -->
+<div class="modal fade left" id="modalFiltro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-side and then add class .modal-top-left (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog modal-side modal-top-left" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- //////////////////////////////////////////////////////////////////////// -->
     <!-- //////////////////////////////////////////////////////////////////////// -->
     <!-- //////////////////////////////////////////////////////////////////////// -->

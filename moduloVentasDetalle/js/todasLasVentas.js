@@ -234,13 +234,13 @@ async function mostrarLosProductosMasVendidos(productos) {
             <div class="modal-dialog modal-notify modal-info" role="document">
             <div class="modal-content">
                 <div class="modal-header text-white">
-                <h5 class="modal-title" id="exampleModalPreviewLabel">Los productos mas vendidos</h5>
+                <h5 class="modal-title" id="exampleModalPreviewLabel">Los productos mas vendidos <button data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalFiltro" class="btn btn-blue btn-sm">Filtrar</button></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body row">
-                <div class="col-12 mb-3 mx-auto">
+                <div id="productosMasVendidosFiltro" class="col-12 mb-3 mx-auto">
                 ${detail}
                 </div>
                 </div>
@@ -250,6 +250,7 @@ async function mostrarLosProductosMasVendidos(productos) {
             </div>
             </div>
         </div>`
+        /* $(modalProductosMasVendidos).modal({backdrop: 'static'}) */
         $(modalProductosMasVendidos).modal("show")
 
     }
