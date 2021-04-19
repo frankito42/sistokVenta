@@ -4,7 +4,12 @@ require "../conn/conn.php";
 if(!isset($_SESSION['user'])){
     header("location:../Login/index.html");
 }
+$fecha=date("Y-m-d");
 ?>
+<script>
+let fechaaaa="<?php echo $fecha;?>"
+localStorage.setItem("fechaHoy",fechaaaa)
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -115,8 +115,12 @@ async function dibujarVentas(params) {
         }
     });
 
-    document.getElementById("listaVentas").innerHTML=listaVentas
-    console.log(params)
+    /* if(listaVentas==""){
+        console.log("123123")
+        document.getElementById("listaVentas").innerHTML=`a`
+    } */
+
+    document.getElementById("listaVentas").innerHTML=(listaVentas=="")?"<h1 style='color:black;text-align: center;'>Realiza una venta :)</h1>":listaVentas
 }
 
 
@@ -192,7 +196,8 @@ async function abrirDetalle(id) {
 
 }
 
-
+let hoy = localStorage.getItem("fechaHoy")
+console.log(hoy)
 
 async function mostrarLosProductosMasVendidos(productos) {
 
@@ -205,7 +210,7 @@ async function mostrarLosProductosMasVendidos(productos) {
                 <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
                 <div class="media-body">
                 <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$$$$$$$$$</span></a></h6>
-                <p class="text-muted">cantidad: ${element.cantidadVendida}.</p>            
+                <p class="text-muted">vendido: ${element.cantidadVendida}.</p>            
                 </div>
                 </div>`
     
@@ -214,7 +219,7 @@ async function mostrarLosProductosMasVendidos(productos) {
                 <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
                 <div class="media-body">
                 <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$$$$$$$$$</span></a></h6>
-                <p class="text-muted">cantidad: ${element.cantidadVendida}.</p>            
+                <p class="text-muted">vendido: ${element.cantidadVendida}.</p>            
                 </div>
                 </div>
                 <hr>`
@@ -240,7 +245,20 @@ async function mostrarLosProductosMasVendidos(productos) {
                 </button>
                 </div>
                 <div class="modal-body row">
+                <div class="col">
+                        <!-- Default input -->
+                        <input type="date" id="fecha1" class="form-control" value="${hoy}" onchange="filtrarProductosFecha()" placeholder="First name">
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col">
+                        <!-- Default input -->
+                        <input type="date" id="fecha2" class="form-control" value="${hoy}" onchange="filtrarProductosFecha()" placeholder="Last name">
+                        </div>
+                        
                 <div id="productosMasVendidosFiltro" class="col-12 mb-3 mx-auto">
+                <hr>
                 ${detail}
                 </div>
                 </div>
@@ -254,4 +272,44 @@ async function mostrarLosProductosMasVendidos(productos) {
         $(modalProductosMasVendidos).modal("show")
 
     }
+}
+
+async function filtrarProductosFecha() {
+    fecha1=document.getElementById("fecha1").value
+    fecha2=document.getElementById("fecha2").value
+    console.log(fecha1)
+    console.log(fecha2)
+    await fetch('php/producMasVendiFiltro.php?fecha1='+fecha1+'&fecha2='+fecha2)
+    .then(response => response.json())
+    .then( async (data)=>{
+        await mostrarLosProductosMasVendidosFiltro(data)
+    })
+}
+async function mostrarLosProductosMasVendidosFiltro(productos) {
+
+
+    let detail=``
+    productos.forEach((element,i) => {
+        if(i==productos.length-1){
+            detail+=`
+            <div style="margin: -1%;" class="media">
+            <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
+            <div class="media-body">
+            <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$$$$$$$$$</span></a></h6>
+            <p class="text-muted">Vendido: ${element.cantidadVendida}.</p>            
+            </div>
+            </div>`
+
+        }else{
+            detail+=`<div style="margin: -1%;" class="media">
+            <i style="color: #29b6f6;" class="d-flex mr-3 fas fa-shopping-basket fa-3x"></i>
+            <div class="media-body">
+            <h6 class="mt-1 font-weight-bold"><a href="#!">${element.nombreProducto}</a><a><span style="font-size: 125%;" class="badge badge-success float-right">$$$$$$$$$</span></a></h6>
+            <p class="text-muted">vendido: ${element.cantidadVendida}.</p>            
+            </div>
+            </div>
+            <hr>`
+        }
+    });
+    document.getElementById("productosMasVendidosFiltro").innerHTML="<hr>"+detail
 }
