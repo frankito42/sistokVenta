@@ -74,12 +74,21 @@ if(!isset($_SESSION['user'])){
     <section>
         <div class="container">
             <button class="btn btn-blue">Buscar por nombre</button>
-            <div class="md-form md-outline input-with-pre-icon">
-                <!-- <i class="fas fa-envelope  input-prefix"></i> -->
-                <i class="fas fa-barcode input-prefix"></i>
-                <input autofocus style="font-size: 125%;" type="number" id="codigoDeBarra" class="form-control">
-                <label for="codigoDeBarra">Codigo de barra</label>
-            </div>   
+            <br>
+            <div class="row">
+                    <div class="col-8">
+                        <div class="md-form md-outline input-with-pre-icon">
+                        <!-- <i class="fas fa-envelope  input-prefix"></i> -->
+                        <i class="fas fa-barcode input-prefix"></i>
+                        <input autofocus style="font-size: 125%;" type="number" id="codigoDeBarra" class="form-control">
+                        <label for="codigoDeBarra">Codigo de barra</label>
+                        </div> 
+                    </div>
+                    <div class="col">
+                        <button id="btnEscanear" class="btn btn-blue btn-sm"><i class="fas fa-camera fa-3x"></i></button>  
+                    </div>
+            </div>
+            
             <div class="table-responsive">
                 <table class="table table-sm table-hover">
                     <thead>
@@ -149,4 +158,5 @@ if(!isset($_SESSION['user'])){
 <script src="../mdb/js/mdb.min.js"></script>
 <script src="../mdb/js/all.min.js"></script>
 <script src="js/ventas.js"></script>
+<script src="script.js"></script>
 </html>
