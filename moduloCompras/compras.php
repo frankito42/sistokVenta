@@ -8,7 +8,8 @@ require "../conn/conn.php";
 header("location:login/login_v5/index.php");
 }
  */
-$sqlTodosLosArticulos="SELECT * FROM `articulos`=a LEFT OUTER join proveedores=p on p.idProveedor=a.idProveedor";
+$sqlTodosLosArticulos="SELECT a.`articulo`, a.`nombre`, a.`costo`, a.`stockmin`, a.`cantidad`, a.`descripcion`, a.`imagen`, a.`categoria`, a.`codBarra`, a.`precioVenta`, a.`idEsta`, a.`idProveedor`,e.nombreEsta,p.nombreP FROM `articulos` =a LEFT OUTER join proveedores=p on p.idProveedor=a.idProveedor 
+JOIN establecimiento =e ON a.idEsta=e.idEsta";
 $articulos=$conn->prepare($sqlTodosLosArticulos);
 $articulos->execute();
 $articulos=$articulos->fetchAll(PDO::FETCH_ASSOC);
@@ -154,8 +155,8 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     <form action="AddNewEntrada.php" method="post">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalPreviewLabel">Entrada de productos</h5>
+      <div style="background: #4285f4;" class="modal-header">
+        <h5 class="modal-title text-white" id="exampleModalPreviewLabel">Entrada de productos</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -197,7 +198,7 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
           <select required autofocus onchange="addNewProductFrom(this.value)" class="mdb-select md-form" searchable="Buscar">
           <option value="" disabled selected>Productos</option>
           <?php foreach ($articulos as $key):?>
-          <option value="<?php echo $key['articulo']?>"><?php echo $key['nombre']?> (<?php echo "en stock: ".$key['cantidad']?> <?php echo "Proveedor: ".$key['nombreP']?>)</option>
+          <option value="<?php echo $key['articulo']?>"><?php echo $key['nombre']?> (<?php echo "En stock: ".$key['cantidad']?> <?php echo ($key['nombreP']=="")?"":"Proveedor: ".$key['nombreP']?> <?php echo " Galpon: ".$key['nombreEsta']?>)</option>
           <?php endforeach?>
           </select>
 
