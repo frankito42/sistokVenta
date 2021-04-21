@@ -27,7 +27,7 @@ async function ventasToDay() {
     .then(response => response.json())
     .then(async (data)=>{
         console.log(data)
-        document.getElementById("ventasDelDia").innerHTML="$"+data.totalDia
+        document.getElementById("ventasDelDia").innerHTML=(data.totalDia==null)?"$"+0:data.totalDia
     });
 }
 async function productosMasVendidos() {
@@ -46,7 +46,7 @@ async function ventasMonth() {
     .then(response => response.json())
     .then(async (data)=>{
         console.log(data)
-        document.getElementById("ventasDelMes").innerHTML="$"+data.totalMes
+        document.getElementById("ventasDelMes").innerHTML=(data.totalMes==null)?"$"+0:data.totalMes
     });
 }
 async function ventasPorFecha() {
