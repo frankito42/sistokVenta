@@ -73,7 +73,7 @@ if(!isset($_SESSION['user'])){
     </section>
     <section>
         <div class="container">
-            <button class="btn btn-blue">Buscar por nombre</button>
+            <button class="btn btn-blue" data-toggle="modal" data-target="#mostarProductElegir">Buscar por nombre</button>
             <br>
             <div class="row">
                     <div class="col-8">
@@ -149,6 +149,50 @@ if(!isset($_SESSION['user'])){
  </div>
  <!-- Central Modal Medium Success-->
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
+
+
+<div class="modal fade" id="mostarProductElegir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div style="background: #2db6e8;color: white;" class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Productos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="eligeProductoNombre" class="modal-body">
+                 <div style="margin: -2%;" class="md-form form-group">
+                    <i class="fa fa-search prefix"></i>
+                    <input type="text" id="filtroProductos" class="form-control validate">
+                    <label for="filtroProductos" >Nombre del producto</label>
+                </div>
+                <table id="mytable" class="table table-sm">
+                    <thead>
+                        <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="aquiMostrarTodo">
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        </tr>
+                    </tbody>
+                    </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
     </section>
     

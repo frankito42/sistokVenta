@@ -12,11 +12,11 @@ async function listarProveedores() {
         let listar=``
         data.forEach(element => {
             listar+=`<div class="row">
-                        <div style="padding: 2%;background: #23acdf;border-radius: 22px;margin-left: 6%;margin-right: 6%;box-shadow: 0px 0px 20px 0px #00000047;" class="col">
+                        <div style="padding: 2%;background: #383742b8;border-radius: 22px;margin-left: 6%;margin-right: 6%;box-shadow: 0px 0px 20px 0px #00000047;" class="col">
                         <h3>${element.nombreP}</h3>
                         </div>
                     </div>
-                    <div style="margin-bottom: 3%;padding-top: 6% !important;background: #00dcffe6;border-radius: 12px;padding: 1%;margin-top: -6%;box-shadow: 0px 0px 20px 0px #00000059;">
+                    <div style="margin-bottom: 3%;padding-top: 6% !important;background: #7188a0c9;border-radius: 12px;padding: 1%;margin-top: -6%;box-shadow: 0px 0px 20px 0px #00000059;">
                         <div class="row">
                             <div class="col">
                             <h4 style="    text-shadow: 0px 0px 20px black;">Direccion</h4>

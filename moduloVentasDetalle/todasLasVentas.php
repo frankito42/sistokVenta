@@ -48,7 +48,7 @@ localStorage.setItem("fechaHoy",fechaaaa)
                 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
                 </a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
-                <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
+                <a class="dropdown-item waves-effect waves-light" href="../moduloProvedor/provedor.php">Proveedores</a>
                 <a class="dropdown-item waves-effect waves-light" href="todasLasVentas.php">Caja</a>
                 <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
                 </div>
@@ -168,7 +168,7 @@ localStorage.setItem("fechaHoy",fechaaaa)
                 <i class="fas fa-dollar-sign fa-4x text-black-40"></i>
             </div>
             </div>
-            <a class="card-footer footer-hover small text-center white-text border-0 p-2">Mas informacion<i class="fas fa-arrow-circle-right pl-2"></i></a>
+            <a id="modalMesVendi" class="card-footer footer-hover small text-center white-text border-0 p-2">Mas informacion<i class="fas fa-arrow-circle-right pl-2"></i></a>
         </div>
         <!-- Card -->
 
@@ -234,26 +234,25 @@ localStorage.setItem("fechaHoy",fechaaaa)
     <!-- //////////////////////////////////////////////////////////////////////// -->
 
     <!-- To change the direction of the modal animation change .right class -->
-<div class="modal fade left" id="modalFiltro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade left" id="totalMesesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
 
   <!-- Add class .modal-side and then add class .modal-top-left (or other classes from list above) to set a position to the modal -->
-  <div class="modal-dialog modal-side modal-top-left" role="document">
+  <div class="modal-dialog modal-side" role="document">
 
 
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title w-100" id="myModalLabel">Ganancias de todos los meses</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div id="totalMeses" class="modal-body">
+        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

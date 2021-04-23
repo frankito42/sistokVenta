@@ -8,8 +8,13 @@ elInput.addEventListener('keypress', async (e) => {
 });
 
 
-async function cargarProductoTablaVenta() {
-    let codigo=document.getElementById('codigoDeBarra').value
+async function cargarProductoTablaVenta(codi) {
+    let codigo
+    if(codi){
+        codigo=codi
+    }else{
+        codigo=document.getElementById('codigoDeBarra').value
+    }
     
     if(codigo){
         fetch('php/cargarArticulo.php?codigo='+codigo)
@@ -17,70 +22,75 @@ async function cargarProductoTablaVenta() {
         .then((data)=> {
             console.log(data)
 
-            fila = document.createElement("tr");
-            celda1 = document.createElement("td");
-            celda2 = document.createElement("td");
-            celda3 = document.createElement("td");
-            celda4 = document.createElement("td");
-            celda5 = document.createElement("td");
-            input1 = document.createElement("input")
-            input2 = document.createElement("input")
-            input1.value=1
-            input1.type="number"
-            input1.style.width="71px"
-            
-            input1.addEventListener("change", async()=>{
-               await sumarTodo()
-            })
-            input1.addEventListener("keyup",async ()=>{
-               await sumarTodo()
-            })
+            if(data==""){
+                alert("El producto no existe.")
+            }else{
+                fila = document.createElement("tr");
+                celda1 = document.createElement("td");
+                celda2 = document.createElement("td");
+                celda3 = document.createElement("td");
+                celda4 = document.createElement("td");
+                celda5 = document.createElement("td");
+                input1 = document.createElement("input")
+                input2 = document.createElement("input")
+                input1.value=1
+                input1.type="number"
+                input1.style.width="71px"
+                
+                input1.addEventListener("change", async()=>{
+                   await sumarTodo()
+                })
+                input1.addEventListener("keyup",async ()=>{
+                   await sumarTodo()
+                })
+    
+                input2.value=data[0].precioVenta
+                input2.type="number"
+                input2.style.width="87px"
+                input2.addEventListener("change",async ()=>{
+                   await sumarTodo()
+                })
+                input2.addEventListener("keyup",async ()=>{
+                   await sumarTodo()
+                })
+                input3=document.createElement("input")
+                input3.type="number"
+                input3.value=data[0].articulo
+                input3.style.display="none"
+                textoCelda1 = document.createTextNode(`${data[0].nombre}`);
+    
+                textoCelda4 = document.createTextNode(`${data[0].precioVenta}`);
+                celda1.appendChild(textoCelda1);
+                celda2.appendChild(input1);
+                celda2.appendChild(input3);
+                celda3.appendChild(input2);
+                celda4.appendChild(textoCelda4);
+                celda5.innerHTML=`<button onclick="deleteTdTable(this)" class="btn btn-danger btn-sm">x</button>`
+                
+                fila.appendChild(celda1);
+                fila.appendChild(celda2);
+                fila.appendChild(celda3);
+                fila.appendChild(celda4);
+                fila.appendChild(celda5);
+               /*  let tr=`
+                <tr>
+                    <td>${data[0].nombre}</td>
+                    <td><input onkeyup="sumarTodo()" style="width: 71px;" onchange="sumarTodo()" type="number" value="1"><input style="display:none;" type="number" value="${data[0].articulo}"></td>
+                    <td><input onkeyup="sumarTodo()" style="width: 83px;" onchange="sumarTodo()" type="number"  value="${data[0].precioVenta}"></td>
+                    <td></td>
+                    <td><button onclick="deleteTdTable(this)" class="btn btn-danger btn-sm">x</button></td>
+                </tr>
+                ` */
+                document.getElementById("ProductosVender").appendChild(fila)
+                /* document.getElementById("ProductosVender").innerHTML+=tr */
+    
+                sumarTodo()
 
-            input2.value=data[0].precioVenta
-            input2.type="number"
-            input2.style.width="87px"
-            input2.addEventListener("change",async ()=>{
-               await sumarTodo()
-            })
-            input2.addEventListener("keyup",async ()=>{
-               await sumarTodo()
-            })
-            input3=document.createElement("input")
-            input3.type="number"
-            input3.value=data[0].articulo
-            input3.style.display="none"
-            textoCelda1 = document.createTextNode(`${data[0].nombre}`);
-
-            textoCelda4 = document.createTextNode(`${data[0].precioVenta}`);
-            celda1.appendChild(textoCelda1);
-            celda2.appendChild(input1);
-            celda2.appendChild(input3);
-            celda3.appendChild(input2);
-            celda4.appendChild(textoCelda4);
-            celda5.innerHTML=`<button onclick="deleteTdTable(this)" class="btn btn-danger btn-sm">x</button>`
-            
-            fila.appendChild(celda1);
-            fila.appendChild(celda2);
-            fila.appendChild(celda3);
-            fila.appendChild(celda4);
-            fila.appendChild(celda5);
-           /*  let tr=`
-            <tr>
-                <td>${data[0].nombre}</td>
-                <td><input onkeyup="sumarTodo()" style="width: 71px;" onchange="sumarTodo()" type="number" value="1"><input style="display:none;" type="number" value="${data[0].articulo}"></td>
-                <td><input onkeyup="sumarTodo()" style="width: 83px;" onchange="sumarTodo()" type="number"  value="${data[0].precioVenta}"></td>
-                <td></td>
-                <td><button onclick="deleteTdTable(this)" class="btn btn-danger btn-sm">x</button></td>
-            </tr>
-            ` */
-            document.getElementById("ProductosVender").appendChild(fila)
-            /* document.getElementById("ProductosVender").innerHTML+=tr */
-
-            sumarTodo()
+            }
 
         });
     }else{
-        alert("error")
+        alert("Agregue codigo de barra.")
     }
 }
 
@@ -166,4 +176,37 @@ function abreModalPregunta() {
         document.getElementById('codigoDeBarra').focus()
     }
 }
+
+async function listarTodosLosProductos() {
+    await fetch("php/listarProductos.php")
+    .then(respuesta => respuesta.json())
+    .then(data => {
+              console.log(data)
+              let elementos=``
+              data.forEach(element => {
+                  elementos+=`
+                  <tr>
+                    <td><button class="btn btn-blue btn-sm" onclick="cargarProductoTablaVenta(${element.codBarra})"><i class="fas fa-plus fa-1x"></i></button></td>
+                    <td>${element.nombre}</td>
+                    <td>$${element.precioVenta}</td>
+                  </tr>
+                  `
+              });
+              document.getElementById("aquiMostrarTodo").innerHTML=elementos
+    });
+}
+listarTodosLosProductos()
+
+$(document).ready(function(){
+    $("#filtroProductos").keyup(function(){
+    _this = this;
+    // Show only matching TR, hide rest of them
+    $.each($("#mytable tbody tr"), function() {
+    if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+    $(this).hide();
+    else
+    $(this).show();
+    });
+    });
+   });
  

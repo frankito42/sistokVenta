@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded",async function() {
     await ventasToDay()
     await ventasMonth()
     await productosMasVendidos()
+    await totalTodosLosMese()
 });
 
 document.getElementById("fechaI").addEventListener("change",async ()=>{
@@ -47,6 +48,20 @@ async function ventasMonth() {
     .then(async (data)=>{
         console.log(data)
         document.getElementById("ventasDelMes").innerHTML=(data.totalMes==null)?"$"+0:data.totalMes
+    });
+}
+async function totalTodosLosMese() {
+    fetch('../consultasAzar/totalTodosLosMeses.php')
+    .then(response => response.json())
+    .then(async (data)=>{
+        console.log(data)
+        let me=``
+        data.forEach(element => {
+            me+=`
+                <h4>${element.mes}: <span style="border-bottom-style: outset;border-color: #4eff4eb8;">$${element.totalMes }</span></h4>
+            `
+        });
+        document.getElementById("totalMeses").innerHTML=me
     });
 }
 async function ventasPorFecha() {
@@ -239,7 +254,7 @@ async function mostrarLosProductosMasVendidos(productos) {
             <div class="modal-dialog modal-notify modal-info" role="document">
             <div class="modal-content">
                 <div class="modal-header text-white">
-                <h5 class="modal-title" id="exampleModalPreviewLabel">Los productos mas vendidos <button data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalFiltro" class="btn btn-blue btn-sm">Filtrar</button></h5>
+                <h5 class="modal-title" id="exampleModalPreviewLabel">Los productos mas vendidos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -313,3 +328,7 @@ async function mostrarLosProductosMasVendidosFiltro(productos) {
     });
     document.getElementById("productosMasVendidosFiltro").innerHTML="<hr>"+detail
 }
+
+document.getElementById("modalMesVendi").addEventListener("click",()=>{
+    $("#totalMesesModal").modal("show")
+})
