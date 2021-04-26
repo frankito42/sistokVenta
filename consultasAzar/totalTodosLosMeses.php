@@ -8,6 +8,6 @@ $sumaMeses=$sumaMeses->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($sumaMeses);
 
-
+ 
 
 ?>
