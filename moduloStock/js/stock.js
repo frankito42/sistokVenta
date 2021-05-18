@@ -87,7 +87,7 @@ $(document).ready(async function(){
 
   
  /*  console.log(document.getElementsByClassName("dropdown-content select-dropdown")) */
-  /* SOY EL MEJOR LPM */
+
   await listarArticulos().then(async()=>{
     await dibujarTabla(todosLosArticulosCategorias[1])
     await dibujarCategorias(todosLosArticulosCategorias[0])
@@ -265,6 +265,7 @@ $(document).ready(async function(){
     <td>${element['cantidad']}</td>
     <td>${element['nombreEsta']}</td>
     <td>${element['nombreCategoria']}</td>
+    <td>${element['nombreLaboratorio']}</td>
     
     <td><button onclick="abrirModalEdit(${element['articulo']})" class="btn btn-blue">Editar</button></td>
     </tr>
