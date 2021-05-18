@@ -34,7 +34,7 @@ $articulos=$articulos->fetchAll(PDO::FETCH_ASSOC);
     <header>
       <section>
           <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-          <a class="navbar-brand" href="#">Stock Sistem</a>
+          <a class="navbar-brand" href="#">Lauchi Damnotti</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -45,8 +45,14 @@ $articulos=$articulos->fetchAll(PDO::FETCH_ASSOC);
                   <span class="sr-only">(current)</span>
                   </a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link waves-effect waves-light" href="../moduloStock/stock.php">Stock</a>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
+                  </a>
+                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloStock/stock.php">Stock</a>
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloCategorias/categorias.php">Categorias</a>
+                  <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                  </div>
               </li>
               <li class="nav-item active">
                   <a class="nav-link waves-effect waves-light" href="compras.php">Compras</a>
@@ -55,11 +61,11 @@ $articulos=$articulos->fetchAll(PDO::FETCH_ASSOC);
                   <a class="nav-link waves-effect waves-light" href="#">ventas</a>
               </li>
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
                   </a>
-                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
-                  <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
-                  <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloProvedor/provedor.php">Proveedores</a>
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloVentasDetalle/todasLasVentas.php">Caja</a>
                   <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
                   </div>
               </li>

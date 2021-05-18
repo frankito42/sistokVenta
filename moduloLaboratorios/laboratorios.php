@@ -1,8 +1,13 @@
 <?php 
 session_start();
+require "../conn/conn.php";
 if(!isset($_SESSION['user'])){
     header("location:../Login/index.html");
 }
+$sqlLaboratorios="SELECT * FROM `laboratorios`";
+$laboratoriosAll=$conn->prepare($sqlLaboratorios);
+$laboratoriosAll->execute();
+$laboratoriosAll=$laboratoriosAll->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +18,7 @@ if(!isset($_SESSION['user'])){
     <link rel="stylesheet" href="../mdb/css/bootstrap.min.css">
     <link rel="stylesheet" href="../mdb/css/mdb.min.css">
     <link rel="stylesheet" href="../mdb/css/all.min.css">
-    <title>Proveedores</title>
+    <title>Laboratorios</title>
 </head>
 <body>
     <section>
@@ -30,9 +35,9 @@ if(!isset($_SESSION['user'])){
                 </a>
             </li>
             <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
                   </a>
-                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-8">
+                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
                   <a class="dropdown-item waves-effect waves-light" href="../moduloStock/stock.php">Stock</a>
                   <a class="dropdown-item waves-effect waves-light" href="../moduloCategorias/categorias.php">Categorias</a>
                   <!-- <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a> -->
@@ -45,11 +50,11 @@ if(!isset($_SESSION['user'])){
                 <a class="nav-link waves-effect waves-light" href="../moduloVentas/ventas.php">ventas</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
                 </a>
-                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
-                <a class="dropdown-item waves-effect waves-light" href="provedor.php">Proveedores</a>
-                <a class="dropdown-item waves-effect waves-light" href="../moduloLaboratorios/laboratorios.php">Laboratorios</a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
+                <a class="dropdown-item waves-effect waves-light" href="../moduloProvedor/provedor.php">Proveedores</a>
+                <a class="dropdown-item waves-effect waves-light" href="laboratorios.php">Laboratorios</a>
                 <a class="dropdown-item waves-effect waves-light" href="../moduloVentasDetalle/todasLasVentas.php">Caja</a>
                 </div>
             </li>
@@ -78,12 +83,25 @@ if(!isset($_SESSION['user'])){
         </nav>
     </section>
     <div class="container">
-    <div style="margin-bottom: 1%;" class="row">
-            <button class="btn btn-blue btn-lg" data-toggle="modal" data-target="#centralModalSuccess">Agregar proveedor</button>
-        </div>
-    </div>
-    <div id="proveedores" class="container text-center text-white">
-    
+    <button class="btn btn-blue" data-toggle="modal" data-target="#addLaboratorio">Nuevo Laboratorio</button>
+        <table class="table table-hover">
+            <thead style="background: #b451ffa3;">
+                <tr>
+                    <th>ID</th>
+                    <th>Laboratorio</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($laboratoriosAll as $key):?>
+                <tr>
+                    <td><?php echo $key['idLaboratorio']?></td>
+                    <td><?php echo $key['nombreLaboratorio']?></td>
+                    <td><a href="php/delete.php?id=<?php echo $key['idLaboratorio']?>" class="btn btn-danger">x</a></td>
+                </tr>
+            <?php endforeach?>
+            </tbody>
+        </table>
     </div>
 </body>
 <style>
@@ -95,38 +113,26 @@ if(!isset($_SESSION['user'])){
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
  <!-- Central Modal Medium Success -->
- <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+ <div class="modal fade" id="addLaboratorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
    aria-hidden="true">
    <div style="margin: 5.75rem auto !important;" class="modal-dialog modal-notify modal-success" role="document">
      <!--Content-->
      <div class="modal-content">
        <!--Header-->
        <div style="margin-left: 5%;margin-right: 5%;margin-top: -5%;box-shadow: 0px 0px 20px 0px #00000073;" class="modal-header">
-         <p style="padding: 3%;" class="heading lead">Añadir un proveedor</p>
+         <p style="padding: 3%;" class="heading lead">Añadir Laboratorio</p>
 
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true" class="white-text">&times;</span>
          </button>
        </div>
-      <form>
+      <form action="php/addLaboratorio.php" method="post">
        <!--Body-->
        <div class="modal-body">
          
           <div class="md-form">
-            <input required type="text" name="nombreProveedor" id="nombreProveedor" value="" class="form-control">
-            <label for="nombreProveedor">Nombre</label>
-          </div>
-          <div class="md-form">
-            <input required type="text" name="direccionProveedor" id="direccionProveedor" value="" class="form-control">
-            <label for="direccionProveedor">Direccion</label>
-          </div>
-          <div class="md-form">
-            <input required type="number" name="telefonoProveedor" id="telefonoProveedor" value="" class="form-control">
-            <label for="telefonoProveedor">Telefono</label>
-          </div>
-          <div class="md-form">
-            <textarea required name="informacionExtra" id="informacionExtra" value="" class="md-textarea form-control" cols="30" rows="3"></textarea>
-            <label for="informacionExtra">Informacion Extra</label>
+            <input required type="text" name="laboratorio" id="laboratorio" value="" class="form-control">
+            <label for="laboratorio">Laboratorio</label>
           </div>
 
          </div>
@@ -135,7 +141,7 @@ if(!isset($_SESSION['user'])){
        <!--Footer-->
        <div class="modal-footer justify-content-center">
          <a type="button" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
-         <a id="addNewproveedor" class="btn btn-success">Guardar</a>
+         <button type="submit" class="btn btn-success">Guardar</button>
        </div>
        </form>
      </div>
@@ -219,5 +225,5 @@ if(!isset($_SESSION['user'])){
 <script src="../mdb/js/bootstrap.min.js"></script>
 <script src="../mdb/js/mdb.min.js"></script>
 <script src="../mdb/js/all.min.js"></script>
-<script src="js/proveedor.js"></script>
+
 </html>

@@ -18,7 +18,7 @@ if(!isset($_SESSION['user'])){
 <body>
     <section>
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-        <a class="navbar-brand" href="#">Stock Sistem</a>
+        <a class="navbar-brand" href="#">Lauchi Damnotti</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,9 +29,15 @@ if(!isset($_SESSION['user'])){
                 <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link waves-effect waves-light" href="stock.php">Stock</a>
-            </li>
+            <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
+                  </a>
+                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
+                  <a class="dropdown-item waves-effect waves-light" href="stock.php">Stock</a>
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloCategorias/categorias.php">Categorias</a>
+                  <!-- <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a> -->
+                  </div>
+              </li>
             <li class="nav-item">
                 <a class="nav-link waves-effect waves-light" href="../moduloCompras/compras.php">Compras</a>
             </li>
@@ -39,12 +45,12 @@ if(!isset($_SESSION['user'])){
                 <a class="nav-link waves-effect waves-light" href="../moduloVentas/ventas.php">ventas</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
                 </a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
                 <a class="dropdown-item waves-effect waves-light" href="../moduloProvedor/provedor.php">Proveedores</a>
+                <a class="dropdown-item waves-effect waves-light" href="../moduloLaboratorios/laboratorios.php">Laboratorios</a>
                 <a class="dropdown-item waves-effect waves-light" href="../moduloVentasDetalle/todasLasVentas.php">Caja</a>
-                <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
                 </div>
             </li>
             </ul>
@@ -87,8 +93,9 @@ if(!isset($_SESSION['user'])){
                     </div>
                 </div>
                 <div class="col-sm">
-                    <button data-toggle="modal" style="background:#a160b6e6;" data-target="#modalNewEstablecimiento" class="btn btn-lg"><i class="fas fa-plus fa-2x"></i></button>
-                    <button data-toggle="modal" data-target="#modalPorcentaje" class="btn aqua-gradient btn-lg"><i class="fas fa-percentage fa-2x"></i></button>
+                    <button data-toggle="modal" style="background:#a160b6e6;" data-target="#modalNewEstablecimiento" class="btn btn-sm"><i class="fas fa-plus fa-2x"></i></button>
+                    <button data-toggle="modal" data-target="#modalPorcentaje" class="btn aqua-gradient btn-sm"><i class="fas fa-percentage fa-2x"></i> <span style="position: absolute;left: 15%;font-size: smaller;top: 25%;background: #ff3f86a1;padding: 5%;"> General</span></button>
+                    <button data-toggle="modal" data-target="#modalPorcentajeLaboratorio" class="btn blue-gradient btn-sm"><i class="fas fa-percentage fa-2x"></i> <span style="position: absolute;left: 0%;font-size: smaller;top: 25%;background: #ff3f86a1;padding: 5%;"> Laboratorio</span></button>
                 </div>
 
             
@@ -105,12 +112,12 @@ if(!isset($_SESSION['user'])){
                     <thead style="background: #19d6f5b0;">
                         <th>Nombre</th>
                         <!-- <th>Costo</th> -->
-                        <th style="white-space: nowrap;">Precio venta</th>
-                        <!-- <th>Descripcion</th> -->
+                        <th style="white-space: nowrap;">Precio por menor</th>
+                        <th>Precio por mayor</th>
                         <th>Stock</th>
                         <th>Establecimiento</th>
                         <th>Categoria</th>
-                        <th>Img</th>
+                      <!--   <th>Img</th> -->
                         <th>Acción</th>
                     </thead>
                     <tbody id="articulosTabla">
@@ -168,7 +175,7 @@ if(!isset($_SESSION['user'])){
 
 
 					<div class="md-form">
-  						<textarea required id="descripcionNewA" name="descripcionNewA" class="md-textarea form-control" rows="2"></textarea>
+  						<textarea id="descripcionNewA" name="descripcionNewA" class="md-textarea form-control" rows="2"></textarea>
   						<label for="descripcionNewA">Descripcion</label>
 					</div>
 
@@ -191,7 +198,7 @@ if(!isset($_SESSION['user'])){
 				</div>
 				<div class="col">
 					<div class="md-form">
-  						<input required type="text" id="codBarraNew" name="codBarraNew" class="form-control">
+  						<input type="text" id="codBarraNew" name="codBarraNew" class="form-control">
   						<label for="codBarraNew">Codigo de barra</label>
 					</div>
 				</div>
@@ -242,7 +249,7 @@ if(!isset($_SESSION['user'])){
          <button id="guardarEstablecimiento" class="btn btn-success">Guardar</button>
        </div>
      </div>
-    
+     
      <!--/.Content-->
    </div>
  </div>
@@ -253,7 +260,7 @@ if(!isset($_SESSION['user'])){
         <div class="modal-dialog" role="document">
             <div class="modal-content text-white">
                 <div style="background: #aa66cc;" class="modal-header">
-                    <h5 class="modal-title" id="exampleModalPreviewLabel">Aumentar precio</h5>
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Aumentar precio general</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -286,6 +293,34 @@ if(!isset($_SESSION['user'])){
                     <button type="button" id="porcentajeNormal" onclick="subirPorcentajeEnPrecios()" class="btn btn-primary">guardar</button>
                     <button type="button" id="porcentajePorProveedor" style="display:none;" onclick="subirPorcentajeEnPreciosProveedor()" class="btn btn-primary">guardar</button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal fade right" id="modalPorcentajeLaboratorio" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-white">
+                <div style="background: #ea5aaa;" class="modal-header">
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Aumentar precio por laboratorio</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div style="background: white;" class="modal-body animated">
+                        <div class="md-form">
+                            <select name="" class="form-control" id="selectLaboratorioAumentar">
+                            <option value="">Seleccionar Laboratorio</option>
+                            </select>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="porcentajeFiltroLaboratorio" class="form-control validate">
+                            <label for="porcentajeFiltroLaboratorio">Porcentaje</label>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" style="background:#ea5aaa !important;" class="btn btn-blue" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="porcentajeNormal" onclick="subirPorcentajeEnPreciosLaboratorio()" class="btn btn-primary">guardar</button>                </div>
             </div>
         </div>
     </div>

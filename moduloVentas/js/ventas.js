@@ -8,7 +8,7 @@ elInput.addEventListener('keypress', async (e) => {
 });
 
 
-async function cargarProductoTablaVenta(codi) {
+async function cargarProductoTablaVenta(codi,idPro) {
     let codigo
     if(codi){
         codigo=codi
@@ -17,7 +17,7 @@ async function cargarProductoTablaVenta(codi) {
     }
     
     if(codigo){
-        fetch('php/cargarArticulo.php?codigo='+codigo)
+        fetch('php/cargarArticulo.php?codigo='+codigo+'&idPro='+idPro)
         .then(response => response.json())
         .then((data)=> {
             console.log(data)
@@ -62,7 +62,7 @@ async function cargarProductoTablaVenta(codi) {
                 textoCelda4 = document.createTextNode(`${data[0].precioVenta}`);
                 celda1.appendChild(textoCelda1);
                 celda2.appendChild(input1);
-                celda2.appendChild(input3);
+                celda2.appendChild(input3); 
                 celda3.appendChild(input2);
                 celda4.appendChild(textoCelda4);
                 celda5.innerHTML=`<button onclick="deleteTdTable(this)" class="btn btn-danger btn-sm">x</button>`
@@ -186,9 +186,10 @@ async function listarTodosLosProductos() {
               data.forEach(element => {
                   elementos+=`
                   <tr>
-                    <td><button class="btn btn-blue btn-sm" onclick="cargarProductoTablaVenta(${element.codBarra})"><i class="fas fa-plus fa-1x"></i></button></td>
+                    <td><button class="btn btn-blue btn-sm" onclick="cargarProductoTablaVenta('${(element.codBarra)?element.codBarra:'no'}',${element.articulo})"><i class="fas fa-plus fa-1x"></i></button></td>
                     <td>${element.nombre}</td>
                     <td>$${element.precioVenta}</td>
+                    <td>$${element.mayoritario}</td>
                   </tr>
                   `
               });

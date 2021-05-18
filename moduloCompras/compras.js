@@ -12,18 +12,18 @@ function addNewProductFrom(id) {
         
         let tr=document.createElement('tr')
         
-        for (let index = 0; index <= 5; index++) {
+        for (let index = 0; index <= 6; index++) {
             let td=document.createElement('td')
             
             
             let nombre=document.createTextNode(data.nombre)
             if(index==0){
-                let img=document.createElement('img')
+                /* let img=document.createElement('img')
                 img.setAttribute("height", "80");
                 img.setAttribute("width", "80")
                 img.setAttribute("src", data.imagen.replace('../', ''))
                 td.appendChild(img)
-                tr.appendChild(td)
+                tr.appendChild(td) */
             }else if(index==1){
                 td.appendChild(nombre)
                 tr.appendChild(td)
@@ -43,6 +43,7 @@ function addNewProductFrom(id) {
                 input.className="form-control"
                 input.required=true
                 input.name="costo[]"
+                input.value=0
                 inputFantasma.value=data.articulo
                 inputFantasma.name="idArticulo[]"
                 inputFantasma.style.display="none"
@@ -60,12 +61,20 @@ function addNewProductFrom(id) {
                 td.appendChild(input)
                 tr.appendChild(td)
             }else if(index==5){
-                let boton=document.createElement('button')
-                boton.className="btn btn-sm btn-primary borrar"
-                boton.innerText="x"
-                td.appendChild(boton)
-                tr.appendChild(td)
-            }
+              let input=document.createElement('input')
+              input.className="form-control"
+              input.required=true
+              input.name="preciomayor[]"
+              td=document.createElement('td')
+              td.appendChild(input)
+              tr.appendChild(td)
+            }else if(index==6){
+              let boton=document.createElement('a')
+              boton.className="btn btn-sm btn-primary borrar"
+              boton.innerText="x"
+              td.appendChild(boton)
+              tr.appendChild(td)
+          }
 
         }
 
@@ -252,3 +261,33 @@ function tomarId2(id) {
 }
 
 
+document.getElementById("transporte").addEventListener("change",()=>{
+  let transporte=(document.getElementById("transporte").value)?document.getElementById("transporte").value:0
+/* console.log(document.getElementById("addProducto").children) */
+  document.getElementById("addProducto").children.forEach(element => {
+    console.log(element.childNodes)
+    let costo=parseFloat(element.childNodes[2].childNodes[1].value)+parseFloat(transporte)
+    element.childNodes[2].childNodes[1].value=costo.toFixed(2)
+  });
+
+})
+document.getElementById("minoritario").addEventListener("change",()=>{
+  let minoritario=(document.getElementById("minoritario").value)?document.getElementById("minoritario").value:0
+/* console.log(document.getElementById("addProducto").children) */
+  document.getElementById("addProducto").children.forEach(element => {
+    console.log(element.childNodes)
+    let total=(parseFloat(minoritario)*parseFloat(element.childNodes[2].childNodes[1].value)/100)+parseFloat(element.childNodes[2].childNodes[1].value)
+    element.childNodes[3].childNodes[0].value=total.toFixed(2)
+  });
+
+})
+document.getElementById("mayoritario").addEventListener("change",()=>{
+  let mayoritario=(document.getElementById("mayoritario").value)?document.getElementById("mayoritario").value:0
+/* console.log(document.getElementById("addProducto").children) */
+  document.getElementById("addProducto").children.forEach(element => {
+    console.log(element.childNodes)
+    let total=(parseFloat(mayoritario)*parseFloat(element.childNodes[2].childNodes[1].value)/100)+parseFloat(element.childNodes[2].childNodes[1].value)
+    element.childNodes[4].childNodes[0].value=total.toFixed(2)
+  });
+
+})

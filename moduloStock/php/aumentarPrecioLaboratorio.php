@@ -3,18 +3,12 @@ require "../../conn/conn.php";
 
 $porcentaje=$_GET['porcentaje'];
 
-if(isset($_GET['idPro'])){
-    $sqlTodosLosArticulos="SELECT * FROM `articulos` where idProveedor=:id";
+    $sqlTodosLosArticulos="SELECT * FROM `articulos` where keyTwoLabor=:id";
     $articulos=$conn->prepare($sqlTodosLosArticulos);
-    $articulos->bindParam(":id",$_GET['idPro']);
+    $articulos->bindParam(":id",$_GET['idLab']);
     $articulos->execute();
     $articulos=$articulos->fetchAll(PDO::FETCH_ASSOC);
-}else{
-    $sqlTodosLosArticulos="SELECT * FROM `articulos`";
-    $articulos=$conn->prepare($sqlTodosLosArticulos);
-    $articulos->execute();
-    $articulos=$articulos->fetchAll(PDO::FETCH_ASSOC);
-}
+
 
 
 foreach ($articulos as $key) {

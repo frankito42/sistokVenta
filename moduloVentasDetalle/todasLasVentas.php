@@ -11,7 +11,7 @@ let fechaaaa="<?php echo $fecha;?>"
 localStorage.setItem("fechaHoy",fechaaaa)
 </script>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +24,7 @@ localStorage.setItem("fechaHoy",fechaaaa)
 <body>
     <section>
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-        <a class="navbar-brand" href="#">Stock Sistem</a>
+        <a class="navbar-brand" href="#">Lauchi Damnotti</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,9 +35,15 @@ localStorage.setItem("fechaHoy",fechaaaa)
                 <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="../moduloStock/stock.php">Stock</a>
-            </li>
+            <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
+                  </a>
+                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-8">
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloStock/stock.php">Stock</a>
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloCategorias/categorias.php">Categorias</a>
+                  <!-- <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a> -->
+                  </div>
+              </li>
             <li class="nav-item">
                 <a class="nav-link waves-effect waves-light" href="../moduloCompras/compras.php">Compras</a>
             </li>
@@ -45,12 +51,12 @@ localStorage.setItem("fechaHoy",fechaaaa)
                 <a class="nav-link waves-effect waves-light" href="../moduloVentas/ventas.php">ventas</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
                 </a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
                 <a class="dropdown-item waves-effect waves-light" href="../moduloProvedor/provedor.php">Proveedores</a>
+                <a class="dropdown-item waves-effect waves-light" href="../moduloLaboratorios/laboratorios.php">Laboratorios</a>
                 <a class="dropdown-item waves-effect waves-light" href="todasLasVentas.php">Caja</a>
-                <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
                 </div>
             </li>
             </ul>
@@ -243,7 +249,7 @@ localStorage.setItem("fechaHoy",fechaaaa)
 
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title w-100" id="myModalLabel">Ganancias de todos los meses</h4>
+        <h4 class="modal-title w-100" id="myModalLabel">Ventas de todos los meses</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

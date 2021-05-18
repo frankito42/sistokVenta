@@ -22,6 +22,19 @@ async function listarProveedores() {
   });
     
 }
+async function listarLaboratorios() {
+  await fetch('php/listarLaboratorios.php')
+  .then(response => response.json())
+  .then(async (data)=>{
+    console.log(data)
+    let option=`<option value="" selected disabled>Seleccionar Laboratorio</option>`
+    data.forEach(element => {
+      option+=`<option value="${element.idLaboratorio}">${element.nombreLaboratorio}</option>`
+    });
+    document.getElementById("selectLaboratorioAumentar").innerHTML=option
+  });
+    
+}
 
 function subirPorcentajeEnPreciosProveedor() {
   let porcentaje=document.getElementById("porcentajeFiltro").value
@@ -58,6 +71,7 @@ listarArticulos().then(async()=>{
   await dibujarCategorias(todosLosArticulosCategorias[0])
   await dibujarSelect(todosLosArticulosCategorias[2])
   await listarProveedores()
+  await listarLaboratorios()
 })
 
 /* console.log(todosLosArticulosCategorias) */
@@ -156,7 +170,13 @@ $(document).ready(function(){
                           <div class="col">
                             <div class="md-form">
                               <input type="number" id="precioArticuloEdit${id}" value="${filtroArray.precioVenta}" name="precioArticulo" class="form-control">
-                              <label for="precioArticuloEdit${id}" class="active">Precio de venta</label>
+                              <label for="precioArticuloEdit${id}" class="active">Precio por menor</label>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="md-form">
+                              <input type="number" id="precioMayo${id}" value="${filtroArray.mayoritario}" name="precioArticulo" class="form-control">
+                              <label for="precioMayo${id}" class="active">Precio por mayor</label>
                             </div>
                           </div>
                         </div>
@@ -198,17 +218,18 @@ $(document).ready(function(){
   let imagen=``
   console.log(articulosStock)
   articulosStock.forEach(element => {
-    imagen=`<img style="width: 100%;" src="${element['imagen']}">`
+    /* imagen=`<img style="width: 100%;" src="${element['imagen']}">` */
     /* <td>${element['costo']}</td>
     <td>${element['descripcion']}</td> */
     tablaArticulos+=`
     <tr>
     <td>${element['nombre']}</td>
     <td>${element['precioVenta']}</td>
+    <td>${element['mayoritario']}</td>
     <td>${element['cantidad']}</td>
     <td>${element['nombreEsta']}</td>
     <td>${element['nombreCategoria']}</td>
-    <td style="width: 8%">${(element['imagen']!="")?imagen:"Img"}</td>
+    
     <td><button onclick="abrirModalEdit(${element['articulo']})" class="btn btn-blue">Editar</button></td>
     </tr>
     `
@@ -313,7 +334,7 @@ $(document).ready(function(){
         stockMinA:document.getElementById("stockMinA"),
         descripcionNewA:document.getElementById("descripcionNewA"),
         categoriaNew:document.getElementById("categoriaNew"),
-        codBarraNew:document.getElementById("codBarraNew")
+        /* codBarraNew:document.getElementById("codBarraNew") */
       };
       let articuloValues = {
         nombre:document.getElementById("newNombreA").value,
@@ -389,7 +410,8 @@ $(document).ready(function(){
     cantidadEdit:document.getElementById("cantidadEdit"+id).value,
     descripcionEdit:document.getElementById("descripcionEdit"+id).value,
     categoriaEdit:document.getElementById("selectCategoriaEdit"+id).value,
-    codBarraEdit:document.getElementById("codBarraEdit"+id).value
+    codBarraEdit:document.getElementById("codBarraEdit"+id).value,
+    precioMayo:document.getElementById("precioMayo"+id).value
   };
 
   let datosEnviar = new FormData();
@@ -433,6 +455,7 @@ $(document).ready(function(){
 /* MODAL DONDE CAMBIO EL TIPO DE FILTRO PARA PONER UN PORCENTAJE GENERAL O ESPECIFICO */
  document.getElementById("botonAvanzadoPorcentaje").addEventListener("click",()=>{
   document.getElementById("modalBody").classList.add("fadeOutRight")
+  document.getElementById("exampleModalPreviewLabel").innerHTML="Aumentar precio por proveedor"
   /* oculto un boton y muestro el otro en el modal  */
   document.getElementById("porcentajeNormal").style.display="none"
   document.getElementById("porcentajePorProveedor").style.display="block"
@@ -447,6 +470,7 @@ $(document).ready(function(){
  })
  /* MODAL DONDE CAMBIO EL TIPO DE FILTRO PARA PONER UN PORCENTAJE GENERAL O ESPECIFICO */
  document.getElementById("botonAvanzadoPorcentaje2").addEventListener("click",()=>{
+  document.getElementById("exampleModalPreviewLabel").innerHTML="Aumentar precio general"
    document.getElementById("porcentajePorProveedor").style.display="none"
     document.getElementById("porcentajeNormal").style.display="block"
    document.getElementById("modalBody2").style.display="none"
@@ -472,3 +496,27 @@ $(document).ready(function(){
   document.getElementById("nombreEstablecimiento").value=""
   console.log("vacioEsta")
  }
+
+ async function subirPorcentajeEnPreciosLaboratorio() {
+  let porcentaje=document.getElementById("porcentajeFiltroLaboratorio").value
+  let laboratorio=document.getElementById("selectLaboratorioAumentar").value
+  if(laboratorio&&porcentaje){
+    await fetch("php/aumentarPrecioLaboratorio.php?porcentaje="+porcentaje+"&idLab="+laboratorio)
+          .then(respuesta => {
+                console.log(respuesta)
+                $("#modalPorcentajeLaboratorio").modal("hide")
+                listarArticulos().then(async()=>{
+                  await traerPoductoGalpon(document.getElementById("establecimientos").value)
+                })
+             }
+          );
+  }else{
+    if(!porcentaje){
+      document.getElementById("porcentajeFiltroLaboratorio").style.borderColor="red"
+    }
+    if(!laboratorio){
+      document.getElementById("selectLaboratorioAumentar").style.borderColor="red"
+    }
+  }
+  
+}

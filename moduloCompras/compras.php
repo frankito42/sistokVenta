@@ -14,6 +14,11 @@ $articulos=$conn->prepare($sqlTodosLosArticulos);
 $articulos->execute();
 $articulos=$articulos->fetchAll(PDO::FETCH_ASSOC);
 
+$sqlLaboratorio="SELECT * FROM `laboratorios`";
+$laboratorios=$conn->prepare($sqlLaboratorio);
+$laboratorios->execute();
+$laboratorios=$laboratorios->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 $sqlEntradas="SELECT * FROM `entrada`";
@@ -45,7 +50,7 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
     <header>
       <section>
           <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-          <a class="navbar-brand" href="#">Stock Sistem</a>
+          <a class="navbar-brand" href="#">Lauchi Damnotti</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -56,8 +61,14 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
                   <span class="sr-only">(current)</span>
                   </a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link waves-effect waves-light" href="../moduloStock/stock.php">Stock</a>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos
+                  </a>
+                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloStock/stock.php">Stock</a>
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloCategorias/categorias.php">Categorias</a>
+                  <!-- <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a> -->
+                  </div>
               </li>
               <li class="nav-item active">
                   <a class="nav-link waves-effect waves-light" href="compras.php">Compras</a>
@@ -66,12 +77,12 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
                   <a class="nav-link waves-effect waves-light" href="../moduloVentas/ventas.php">ventas</a>
               </li>
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
                   </a>
-                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
+                  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
                   <a class="dropdown-item waves-effect waves-light" href="../moduloProvedor/provedor.php">Proveedores</a>
+                  <a class="dropdown-item waves-effect waves-light" href="../moduloLaboratorios/laboratorios.php">Laboratorios</a>
                   <a class="dropdown-item waves-effect waves-light" href="../moduloVentasDetalle/todasLasVentas.php">Caja</a>
-                  <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
                   </div>
               </li>
               </ul>
@@ -179,8 +190,19 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
           </select>
         </div>
       </div>
+      <div class="col">
+        <div class="md-form">
+          <select required name="laboratorio" class="browser-default custom-select">
+            <option selected disabled value="">Laboratorios</option>
+            <?php foreach ($laboratorios as $key):?>
+            <option value="<?php echo $key['idLaboratorio']?>"><?php echo $key['nombreLaboratorio']?></option>
+            <?php endforeach?>
+          </select>
+        </div>
+      </div>
       <div class="col-sm">
-      <a href="../moduloProvedor/provedor.php" class="btn btn-blue btn-lg">Nuevo Provedor</a>
+      <a href="../moduloProvedor/provedor.php" class="btn btn-blue btn-sm">Nuevo Provedor</a>
+      <a href="#" class="btn btn-blue btn-sm">Nuevo Laboratorio</a>
       </div>
       </div>
       <div class="col">
@@ -205,15 +227,49 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
 
 
       </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="row">
+              <div class="col">
+                  <div class="md-form">
+                    <input required type="number" id="transporte" name="transporte" class="form-control">
+                    <label for="transporte">Transporte</label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="md-form">
+                    <input required type="number" id="minoritario" name="minoritario" class="form-control">
+                    <label for="minoritario">Por menor%</label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="md-form">
+                    <input required type="number" id="mayoritario" name="mayoritario" class="form-control">
+                    <label for="mayoritario">Por mayor%</label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="md-form">
+                    <a class="btn btn-success btn-sm"><i class="fas fa-circle"></i></a>
+                  </div>
+              </div>
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //////////////////////////////////////////////// -->
+
+
         <!-- Shopping Cart table -->
         <div class="table-responsive">
         <table id="tablaEscondida" style="display:none;" class="table table-hover">
         <thead style="background:#00b8ffa3;">
-        <th>imagen</th>
+        <!-- <th>imagen</th> -->
         <th>nombre</th>
         <th>cantidad</th>
         <th>costo</th>
-        <th>Precio venta</th>
+        <th>Venta por menor</th>
+        <th>Venta por mayor</th>
         <th></th>
         </thead>
         <tbody id="addProducto">
