@@ -5,7 +5,7 @@ $articulo = json_decode($_POST['articulo']);
     $sqlUpdateArticulo="UPDATE `articulos` SET   `nombre`=:nombre,`costo`=:costo,
                                                 `stockmin`=:stockmin,`cantidad`=:cantidad,
                                                 `descripcion`=:descripcion,`categoria`=:categoria,
-                                                `codBarra`=:codBarra,`precioVenta`=:precio,`mayoritario`=:mayo
+                                                `codBarra`=:codBarra,`precioVenta`=:precio,`mayoritario`=:mayo,`keyTwoLabor`=:labor
                                                  WHERE `articulo`=:articulo";
     $editProducto=$conn->prepare($sqlUpdateArticulo);
     $editProducto->bindParam(":nombre",$articulo->nombreEdit);
@@ -18,6 +18,7 @@ $articulo = json_decode($_POST['articulo']);
     $editProducto->bindParam(":precio",$articulo->precioEdit);
     $editProducto->bindParam(":mayo",$articulo->precioMayo);
     $editProducto->bindParam(":articulo",$articulo->articulo);
+    $editProducto->bindParam(":labor",$articulo->labor);
 
     if($editProducto->execute()){
     echo json_encode("perfecto");

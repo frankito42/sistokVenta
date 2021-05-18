@@ -190,18 +190,25 @@ if(!isset($_SESSION['user'])){
 				</div>
 				
 				<div class="row">
-				<div style="margin-top: 6%;" class="col">
-				
-						<select required id="categoriaNew" name="categoria" class="form-control">
-						</select>
-				
+				<div class="col">
+			
+                <select id="categoriaNew" required autofocus class="mdb-select md-form" searchable="Buscar">
+				</select>
+				</div>
+                <!-- ////////////////////////////////////////////////// -->
+                <!-- ////////////////////////////////////////////////// -->
+				<div class="col">
+                <select id="laboratoriosSearch" required autofocus class="mdb-select md-form" searchable="Buscar">
+                </select>
+				</div>
+                <!-- ////////////////////////////////////////////////// -->
+                <!-- ////////////////////////////////////////////////// -->
 				</div>
 				<div class="col">
 					<div class="md-form">
   						<input type="text" id="codBarraNew" name="codBarraNew" class="form-control">
   						<label for="codBarraNew">Codigo de barra</label>
 					</div>
-				</div>
 				</div>
             </div> 
             <!-- /////////////////////////////ERROR ERROR//////////////////////////////////////////// -->
@@ -328,8 +335,35 @@ if(!isset($_SESSION['user'])){
     <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
     <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
     </section>
+
     
 </body>
+<style>
+li:hover{
+    background:#33b5e5ab;
+    color:white;
+    border-radius: 8px;
+}
+.select-dropdown{
+    position: absolute;
+    top: 24px;
+    left: 0px;
+    background: white;
+    z-index: 1;
+    box-shadow: 0 11px 20px black;
+    position: initial;
+    list-style-type: none; 
+    padding: 3%;
+    max-height: 300px !important;
+    overflow-y: scroll;/*le pones scroll*/
+}
+.initialized{
+  display:none;
+}
+.caret{
+  display:none;
+}
+</style>
 <script src="../mdb/js/jquery.min.js"></script>
 <script src="../mdb/js/bootstrap.min.js"></script>
 <script src="../mdb/js/mdb.min.js"></script>

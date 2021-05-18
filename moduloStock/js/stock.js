@@ -32,6 +32,7 @@ async function listarLaboratorios() {
       option+=`<option value="${element.idLaboratorio}">${element.nombreLaboratorio}</option>`
     });
     document.getElementById("selectLaboratorioAumentar").innerHTML=option
+    document.getElementById("laboratoriosSearch").innerHTML=option
   });
     
 }
@@ -66,18 +67,12 @@ document.getElementById("selectProvedorAumentar").addEventListener("click",()=>{
 })
 
 
-listarArticulos().then(async()=>{
-  await dibujarTabla(todosLosArticulosCategorias[1])
-  await dibujarCategorias(todosLosArticulosCategorias[0])
-  await dibujarSelect(todosLosArticulosCategorias[2])
-  await listarProveedores()
-  await listarLaboratorios()
-})
+
 
 /* console.log(todosLosArticulosCategorias) */
 
 
-$(document).ready(function(){
+$(document).ready(async function(){
   $("#filtroProductos").keyup(function(){
   _this = this;
   // Show only matching TR, hide rest of them
@@ -88,7 +83,34 @@ $(document).ready(function(){
   $(this).show();
   });
   });
- });
+
+
+  
+ /*  console.log(document.getElementsByClassName("dropdown-content select-dropdown")) */
+  /* SOY EL MEJOR LPM */
+  await listarArticulos().then(async()=>{
+    await dibujarTabla(todosLosArticulosCategorias[1])
+    await dibujarCategorias(todosLosArticulosCategorias[0])
+    await dibujarSelect(todosLosArticulosCategorias[2])
+    await listarProveedores()
+    await listarLaboratorios()
+    
+    
+    $('.mdb-select').materialSelect();
+  })
+  document.getElementsByClassName("dropdown-content select-dropdown").forEach((element)=>{
+    console.log(element.parentElement.childNodes[1])
+    element.parentElement.childNodes[1].addEventListener("click",()=>{
+      element.children[0].children[0].children[0].focus()
+      console.log("hola")
+    })
+
+  })
+  
+  
+
+  
+});
 
 
  async function abrirModalEdit(id) {
@@ -101,11 +123,18 @@ $(document).ready(function(){
       $(document.getElementById(`articulo${id}`)).modal("show")
     }else{
       let optionsCategoria=``
-    todosLosArticulosCategorias[0].forEach(element => {
-      optionsCategoria+=`
-      <option ${(element.idCategoria==filtroArray.categoria)?"selected":""} value="${element.idCategoria}">${element.nombreCategoria}</option>
-      `
-    });
+      todosLosArticulosCategorias[0].forEach(element => {
+        optionsCategoria+=`
+        <option ${(element.idCategoria==filtroArray.categoria)?"selected":""} value="${element.idCategoria}">${element.nombreCategoria}</option>
+        `
+      });
+
+      let optionsLabor=``
+      todosLosArticulosCategorias[3].forEach(element => {
+        optionsLabor+=`
+        <option ${(element.idLaboratorio==filtroArray.keyTwoLabor)?"selected":""} value="${element.idLaboratorio}">${element.nombreLaboratorio}</option>
+        `
+      });
       let modalEdit=`
                 <div class="modal fade" id="articulo${id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -184,13 +213,20 @@ $(document).ready(function(){
                     
                     <div class="row">
                   
-                    
+                    <div class="col">
                         <select id="selectCategoriaEdit${id}" required class="form-control">
                         <option value="">Categoria</option>
                         ${optionsCategoria}
                         
                         </select>
-                    
+                    </div>
+                    <div class="col">
+                        <select id="selectLaborEdit${id}" required class="form-control">
+                        <option value="">Laboratorios</option>
+                        ${optionsLabor}
+                        
+                        </select>
+                    </div>
                   
                     
                     </div>
@@ -334,6 +370,7 @@ $(document).ready(function(){
         stockMinA:document.getElementById("stockMinA"),
         descripcionNewA:document.getElementById("descripcionNewA"),
         categoriaNew:document.getElementById("categoriaNew"),
+        laboratoriosSearch:document.getElementById("laboratoriosSearch"),
         /* codBarraNew:document.getElementById("codBarraNew") */
       };
       let articuloValues = {
@@ -342,6 +379,7 @@ $(document).ready(function(){
         stockMinA:document.getElementById("stockMinA").value,
         descripcionNewA:document.getElementById("descripcionNewA").value,
         categoriaNew:document.getElementById("categoriaNew").value,
+        laboratoriosSearch:document.getElementById("laboratoriosSearch").value,
         codBarraNew:document.getElementById("codBarraNew").value
       };
       console.log(articulo)
@@ -410,6 +448,7 @@ $(document).ready(function(){
     cantidadEdit:document.getElementById("cantidadEdit"+id).value,
     descripcionEdit:document.getElementById("descripcionEdit"+id).value,
     categoriaEdit:document.getElementById("selectCategoriaEdit"+id).value,
+    labor:document.getElementById("selectLaborEdit"+id).value,
     codBarraEdit:document.getElementById("codBarraEdit"+id).value,
     precioMayo:document.getElementById("precioMayo"+id).value
   };
@@ -489,6 +528,7 @@ $(document).ready(function(){
   document.getElementById("descripcionNewA").value=""
   document.getElementById("categoriaNew").value=""
   document.getElementById("codBarraNew").value=""
+  document.getElementById("laboratoriosSearch").value=""
   console.log("vacioNew")
  }
 
