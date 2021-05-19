@@ -190,7 +190,7 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
           </select>
         </div>
       </div>
-      <div class="col">
+      <!-- <div class="col">
         <div class="md-form">
           <select required name="laboratorio" class="browser-default custom-select">
             <option selected disabled value="">Laboratorios</option>
@@ -199,10 +199,10 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach?>
           </select>
         </div>
-      </div>
+      </div> -->
       <div class="col-sm">
       <a href="../moduloProvedor/provedor.php" class="btn btn-blue btn-sm">Nuevo Provedor</a>
-      <a href="#" class="btn btn-blue btn-sm">Nuevo Laboratorio</a>
+      <a href="../moduloLaboratorios/laboratorios.php" class="btn btn-blue btn-sm">Nuevo Laboratorio</a>
       </div>
       </div>
       <div class="col">

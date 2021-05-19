@@ -9,7 +9,7 @@ $cantidad=$_POST['cantidad'];
 $precioVenta=$_POST['precioventa']; 
 $fecha=date('Y-m-d');
 $idProve=$_POST['proveedor'];
-$keyLaboratorio=$_POST['laboratorio'];
+/* $keyLaboratorio=$_POST['laboratorio']; */
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 $transporte=$_POST['transporte']; 
 $preciomayor=$_POST['preciomayor']; 
@@ -17,19 +17,25 @@ $preciomayor=$_POST['preciomayor'];
 $mayoritario=$_POST['mayoritario'];  */
 
 /* INSERTO UNA ENTRADA O FACTURA DE PRUDUSCTOS A INGRESAR */
-$entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve`,`KeyLaboratorio`,`transporte`) VALUES 
+$entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve`,`transporte`) VALUES 
+                                                                    (:fecha,
+                                                                     :nFactura,
+                                                                     :observacion,
+                                                                     :idProve,
+                                                                     :tranport)";
+/* $entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve`,`KeyLaboratorio`,`transporte`) VALUES 
                                                                     (:fecha,
                                                                      :nFactura,
                                                                      :observacion,
                                                                      :idProve,
                                                                      :laboratorio,
-                                                                     :tranport)";
+                                                                     :tranport)"; */
 $entrada=$conn->prepare($entradaSql);
 $entrada->bindParam(":fecha",$fecha);
 $entrada->bindParam(":nFactura",$factura);
 $entrada->bindParam(":observacion",$observacion);
 $entrada->bindParam(":idProve",$idProve);
-$entrada->bindParam(":laboratorio",$keyLaboratorio);
+/* $entrada->bindParam(":laboratorio",$keyLaboratorio); */
 $entrada->bindParam(":tranport",$transporte);
 $entrada->execute();
 /* TRAIGO EL ID INGRESADO "EL ULTIMO" */
@@ -45,14 +51,14 @@ for ($i=0; $i < count($idArticulo) ; $i++) {
 
     $sumaStock=$sellArticulo['cantidad']+$cantidad[$i];
 
-    $sqlUpdateStock="UPDATE `articulos` SET `costo`=:costo, `cantidad`=:cantidad, `precioVenta`=:precioVenta,`idProveedor`=:idProveedor, `keyTwoLabor`=:labor, `mayoritario`=:mayo WHERE `articulo`=:id";
+    $sqlUpdateStock="UPDATE `articulos` SET `costo`=:costo, `cantidad`=:cantidad, `precioVenta`=:precioVenta,`idProveedor`=:idProveedor, `mayoritario`=:mayo WHERE `articulo`=:id";
     $upCantidad=$conn->prepare($sqlUpdateStock);
     $upCantidad->bindParam(":id",$idArticulo[$i]);
     $upCantidad->bindParam(":precioVenta",$precioVenta[$i]);
     $upCantidad->bindParam(":cantidad",$sumaStock);
     $upCantidad->bindParam(":costo",$costo[$i]);
     $upCantidad->bindParam(":idProveedor",$idProve);
-    $upCantidad->bindParam(":labor",$keyLaboratorio);
+ /*    $upCantidad->bindParam(":labor",$keyLaboratorio); */
     $upCantidad->bindParam(":mayo",$preciomayor[$i]);
     $upCantidad->execute();
     
