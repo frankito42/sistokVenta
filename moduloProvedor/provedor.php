@@ -111,7 +111,7 @@ if(!isset($_SESSION['user'])){
       <form>
        <!--Body-->
        <div class="modal-body">
-         
+          
           <div class="md-form">
             <input required type="text" name="nombreProveedor" id="nombreProveedor" value="" class="form-control">
             <label for="nombreProveedor">Nombre</label>
