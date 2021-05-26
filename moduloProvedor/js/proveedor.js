@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded",async function() {
     console.log("DOM fully loaded and parsed");
     await listarProveedores()
 });
+function vaciarFromPro() {
+  document.getElementById("nombreProveedor").value=""
+  document.getElementById("direccionProveedor").value=""
+  document.getElementById("telefonoProveedor").value=""
+  document.getElementById("informacionExtra").value=""
+}
 
 async function listarProveedores() {
     fetch('php/listarProveedores.php')
@@ -76,6 +82,7 @@ document.getElementById("addNewproveedor").addEventListener("click",()=>{
                     $("#centralModalSuccess").modal("hide")
                     /* AQUI VA EL LISTAR TODOS LOS PROVEEDORES */
                     await listarProveedores()
+                    vaciarFromPro()
                     /* AQUI VA EL LISTAR TODOS LOS PROVEEDORES */
                     $("#exito").modal("show")
                   }
