@@ -32,6 +32,7 @@ function addNewProductFrom(id) {
                 let input=document.createElement('input')
                 input.className="form-control"
                 input.required=true
+                input.type="number"
                 input.name="cantidad[]"
                 td=document.createElement('td')
                 td.appendChild(input)
@@ -56,18 +57,50 @@ function addNewProductFrom(id) {
                 let input=document.createElement('input')
                 input.className="form-control"
                 input.required=true
+                input.style.width="44%"
+                input.style.display="inline"
+                input.style.marginRight="2%"
                 input.name="precioventa[]"
                 td=document.createElement('td')
                 td.appendChild(input)
                 tr.appendChild(td)
+
+                let p=document.createElement('p')
+                p.innerText="$12000"
+                p.style.color="#269c56f7"
+                p.style.display="inline"
+                td.appendChild(p)
+                let div=`
+                <div class="md-form">
+                <input disabled class="form-control" id="meno${data.articulo}">
+                <label style="max-width: max-content;" for="meno${data.articulo}" class="active">Ganancia por menor</label>
+                </div>
+                `
+                td.innerHTML+=div
             }else if(index==5){
-              let input=document.createElement('input')
-              input.className="form-control"
-              input.required=true
-              input.name="preciomayor[]"
-              td=document.createElement('td')
-              td.appendChild(input)
-              tr.appendChild(td)
+                let input=document.createElement('input')
+                input.className="form-control"
+                input.required=true
+                input.style.width="44%"
+                input.style.display="inline"
+                input.style.marginRight="2%"
+                input.name="preciomayor[]"
+                td=document.createElement('td')
+                td.appendChild(input)
+                tr.appendChild(td)
+
+                let p=document.createElement('p')
+                p.innerText="$12000"
+                p.style.color="#269c56f7"
+                p.style.display="inline"
+                td.appendChild(p)
+                let div=`
+                <div class="md-form">
+                <input disabled class="form-control" id="mayo${data.articulo}">
+                <label style="max-width: max-content;" for="mayo${data.articulo}" class="active">Ganancia por mayor</label>
+                </div>
+                `
+                td.innerHTML+=div
             }else if(index==6){
               let boton=document.createElement('a')
               boton.className="btn btn-sm btn-primary borrar"
