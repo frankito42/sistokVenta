@@ -372,7 +372,7 @@ $(document).ready(async function(){
         descripcionNewA:document.getElementById("descripcionNewA"),
         categoriaNew:document.getElementById("categoriaNew"),
         laboratoriosSearch:document.getElementById("laboratoriosSearch"),
-        codBarraNew:document.getElementById("codBarraNew")
+        /* codBarraNew:document.getElementById("codBarraNew") */
       };
       let articuloValues = {
         nombre:document.getElementById("newNombreA").value,
