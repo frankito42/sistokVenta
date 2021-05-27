@@ -201,8 +201,8 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
         </div>
       </div> -->
       <div class="col-sm">
-      <a href="../moduloProvedor/provedor.php" class="btn btn-blue btn-sm">Nuevo Provedor</a>
-      <a href="../moduloLaboratorios/laboratorios.php" class="btn btn-blue btn-sm">Nuevo Laboratorio</a>
+      <a href="../moduloProvedor/provedor.php" class="btn btn-blue btn-lg">Nuevo Provedor</a>
+      <!-- <a href="../moduloLaboratorios/laboratorios.php" class="btn btn-blue btn-sm">Nuevo Laboratorio</a> -->
       </div>
       </div>
       <div class="col">

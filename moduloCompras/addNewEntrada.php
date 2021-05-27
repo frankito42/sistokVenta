@@ -11,13 +11,13 @@ $fecha=date('Y-m-d');
 $idProve=$_POST['proveedor'];
 /* $keyLaboratorio=$_POST['laboratorio']; */
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-$transporte=$_POST['transporte']; 
+/* $transporte=$_POST['transporte'];  */
 $preciomayor=$_POST['preciomayor']; 
 /* $minoritario=$_POST['minoritario']; 
 $mayoritario=$_POST['mayoritario'];  */
 
 /* INSERTO UNA ENTRADA O FACTURA DE PRUDUSCTOS A INGRESAR */
-$entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve` VALUES 
+$entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve`)VALUES 
                                                                     (:fecha,
                                                                      :nFactura,
                                                                      :observacion,

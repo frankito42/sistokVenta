@@ -88,6 +88,7 @@ function addNewProductFrom(id) {
                 <div class="md-form">
                 <input type="number" disabled class="form-control" id="meno${data.articulo}">
                 <label style="max-width: max-content;" for="meno${data.articulo}" class="active">Ganancia por menor</label>
+                <span style="position: absolute;top: -190%;background: #5cd1ff99;padding: 2%;border-radius: 5px;color: #ff023d;">%</span>
                 </div>
                 `
                 td.innerHTML+=div
@@ -129,6 +130,7 @@ function addNewProductFrom(id) {
                 <div class="md-form">
                 <input type="number" disabled class="form-control" id="mayo${data.articulo}">
                 <label style="max-width: max-content;" for="mayo${data.articulo}" class="active">Ganancia por mayor</label>
+                <span style="position: absolute;top: -190%;background: #5cd1ff99;padding: 2%;border-radius: 5px;color: #ff023d;">%</span>
                 </div>
                 `
                 td.innerHTML+=div
