@@ -56,21 +56,32 @@ function addNewProductFrom(id) {
                 tr.appendChild(td)
                 
             }else if(index==4){
-                let input=document.createElement('input')
+              
+              let input2=document.createElement('input')
+              input2.type = "number";
+              input2.name = "precioventa[]";
+              input2.style.display="none"
+              
+              let input=document.createElement('input')
                 input.className="form-control"
                 input.required=true
                 input.style.width="44%"
                 input.style.display="inline"
                 input.style.marginRight="2%"
                 input.type="number"
-                input.name="precioventa[]"
+                input.onkeyup = sumarTodoTodito;
+
+
                 td=document.createElement('td')
-                td.appendChild(input)
                 tr.appendChild(td)
 
                 let p=document.createElement('p')
                 p.innerText="$0"
-                p.style.color="#269c56f7"
+                p.style.color = "rgb(0 206 84 / 97%)";
+                p.style.fontSize="140%"
+                p.style.background = "#ffc4f2";
+                p.style.borderRadius = "5px";
+                p.style.padding = "1%";
                 p.style.display="inline"
                 td.appendChild(p)
                 let div=`
@@ -80,23 +91,39 @@ function addNewProductFrom(id) {
                 </div>
                 `
                 td.innerHTML+=div
+                /* el primer input es el de porcentaje */
+                td.insertBefore(input, td.firstChild);
+                /* este es un input escondido */
+                td.appendChild(input2);
             }else if(index==5){
-                let input=document.createElement('input')
-                input.className="form-control"
-                input.required=true
-                input.style.width="44%"
-                input.style.display="inline"
-                input.style.marginRight="2%"
-                input.type="number"
-                input.name="preciomayor[]"
+                let input2 = document.createElement("input");
+                input2.type = "number";
+                input2.name = "preciomayor[]";
+                input2.onkeyup = sumarTodoTodito;
+                input2.style.display = "none";
+                
+                
+                
+                let input3 = document.createElement("input");
+                input3.className="form-control"
+                input3.required=true
+                input3.type = "number";
+                input3.style.width="44%"
+                input3.style.display="inline"
+                input3.style.marginRight="2%"
+                input3.onkeyup = sumarTodoTodito;
                 td=document.createElement('td')
-                td.appendChild(input)
+                
                 tr.appendChild(td)
 
-                let p=document.createElement('p')
-                p.innerText="$0"
-                p.style.color="#269c56f7"
-                p.style.display="inline"
+                let p = document.createElement("p");
+                p.innerText = "$0";
+                p.style.color = "rgb(0 206 84 / 97%)";
+                p.style.fontSize = "140%";
+                p.style.background = "#ffc4f2";
+                p.style.borderRadius = "5px";
+                p.style.padding = "1%";
+                p.style.display = "inline";
                 td.appendChild(p)
                 let div=`
                 <div class="md-form">
@@ -105,6 +132,8 @@ function addNewProductFrom(id) {
                 </div>
                 `
                 td.innerHTML+=div
+                td.insertBefore(input3,td.firstChild);
+                td.appendChild(input2)
             }else if(index==6){
               let boton=document.createElement('a')
               boton.className="btn btn-sm btn-primary borrar"
@@ -298,37 +327,6 @@ function tomarId2(id) {
 }
 
 
-document.getElementById("transporte").addEventListener("change",()=>{
-  let transporte=(document.getElementById("transporte").value)?document.getElementById("transporte").value:0
-/* console.log(document.getElementById("addProducto").children) */
-  document.getElementById("addProducto").children.forEach(element => {
-    console.log(element.childNodes)
-    let costo=parseFloat(element.childNodes[2].childNodes[1].value)+parseFloat(transporte)
-    element.childNodes[2].childNodes[1].value=costo.toFixed(2)
-  });
-
-})
-document.getElementById("minoritario").addEventListener("change",()=>{
-  let minoritario=(document.getElementById("minoritario").value)?document.getElementById("minoritario").value:0
-/* console.log(document.getElementById("addProducto").children) */
-  document.getElementById("addProducto").children.forEach(element => {
-    console.log(element.childNodes)
-    let total=(parseFloat(minoritario)*parseFloat(element.childNodes[2].childNodes[1].value)/100)+parseFloat(element.childNodes[2].childNodes[1].value)
-    element.childNodes[3].childNodes[0].value=total.toFixed(2)
-  });
-
-})
-document.getElementById("mayoritario").addEventListener("change",()=>{
-  let mayoritario=(document.getElementById("mayoritario").value)?document.getElementById("mayoritario").value:0
-/* console.log(document.getElementById("addProducto").children) */
-  document.getElementById("addProducto").children.forEach(element => {
-    console.log(element.childNodes)
-    let total=(parseFloat(mayoritario)*parseFloat(element.childNodes[2].childNodes[1].value)/100)+parseFloat(element.childNodes[2].childNodes[1].value)
-    element.childNodes[4].childNodes[0].value=total.toFixed(2)
-  });
-
-})
-
 
 function sumarTodoTodito() {
   let todosLosTrProductos=document.querySelectorAll("#addProducto")
@@ -352,8 +350,13 @@ function sumarTodoTodito() {
     input1=element.children[3].children[2].children[0].value=(minoriTotal-costoBruto).toFixed(2)
     input2=element.children[4].children[2].children[0].value=(mayoriTotal-costoBruto).toFixed(2)
 
-    console.log(element.children[3].children[2].children[0].value)
-    console.log(element.children[4].children[2].children[0].value)
+    /* PRECIO DE VENTA MINORITARIO TOTAL */
+    element.children[3].children[3].value = minoriTotal;
+    /* PRECIO DE VENTA mayoritario TOTAL */
+    element.children[4].children[3].value = mayoriTotal;
+
+    console.log(element.children[3].children[3])
+    console.log(element.children[4].children[3])
     console.log(costoBruto)
     console.log(minoriTotal)
     console.log(mayoriTotal)

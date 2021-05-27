@@ -17,12 +17,11 @@ $preciomayor=$_POST['preciomayor'];
 $mayoritario=$_POST['mayoritario'];  */
 
 /* INSERTO UNA ENTRADA O FACTURA DE PRUDUSCTOS A INGRESAR */
-$entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve`,`transporte`) VALUES 
+$entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve` VALUES 
                                                                     (:fecha,
                                                                      :nFactura,
                                                                      :observacion,
-                                                                     :idProve,
-                                                                     :tranport)";
+                                                                     :idProve)";
 /* $entradaSql="INSERT INTO `entrada`(`fecha`, `nFactura`, `observacion`,`idProve`,`KeyLaboratorio`,`transporte`) VALUES 
                                                                     (:fecha,
                                                                      :nFactura,
@@ -36,7 +35,7 @@ $entrada->bindParam(":nFactura",$factura);
 $entrada->bindParam(":observacion",$observacion);
 $entrada->bindParam(":idProve",$idProve);
 /* $entrada->bindParam(":laboratorio",$keyLaboratorio); */
-$entrada->bindParam(":tranport",$transporte);
+/* $entrada->bindParam(":tranport",$transporte); */
 $entrada->execute();
 /* TRAIGO EL ID INGRESADO "EL ULTIMO" */
 $elIdEntrada=$conn->lastInsertId();

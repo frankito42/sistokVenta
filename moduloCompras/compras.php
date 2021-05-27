@@ -230,7 +230,7 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
             <!-- //////////////////////////////////////////////// -->
             <!-- //////////////////////////////////////////////// -->
             <!-- //////////////////////////////////////////////// -->
-            <div class="row">
+            <!-- <div class="row">
               <div class="col">
                   <div class="md-form">
                     <input required type="number" id="transporte" name="transporte" class="form-control">
@@ -254,7 +254,7 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
                     <a class="btn btn-success btn-sm"><i class="fas fa-circle"></i></a>
                   </div>
               </div>
-            </div>
+            </div> -->
             <!-- //////////////////////////////////////////////// -->
             <!-- //////////////////////////////////////////////// -->
             <!-- //////////////////////////////////////////////// -->
