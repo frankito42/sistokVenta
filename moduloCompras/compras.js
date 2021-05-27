@@ -43,7 +43,9 @@ function addNewProductFrom(id) {
                 let inputFantasma=document.createElement('input')
                 input.className="form-control"
                 input.required=true
+                input.type="number"
                 input.name="costo[]"
+                input.onkeyup=sumarTodoTodito
                 input.value=0
                 inputFantasma.value=data.articulo
                 inputFantasma.name="idArticulo[]"
@@ -60,19 +62,20 @@ function addNewProductFrom(id) {
                 input.style.width="44%"
                 input.style.display="inline"
                 input.style.marginRight="2%"
+                input.type="number"
                 input.name="precioventa[]"
                 td=document.createElement('td')
                 td.appendChild(input)
                 tr.appendChild(td)
 
                 let p=document.createElement('p')
-                p.innerText="$12000"
+                p.innerText="$0"
                 p.style.color="#269c56f7"
                 p.style.display="inline"
                 td.appendChild(p)
                 let div=`
                 <div class="md-form">
-                <input disabled class="form-control" id="meno${data.articulo}">
+                <input type="number" disabled class="form-control" id="meno${data.articulo}">
                 <label style="max-width: max-content;" for="meno${data.articulo}" class="active">Ganancia por menor</label>
                 </div>
                 `
@@ -84,19 +87,20 @@ function addNewProductFrom(id) {
                 input.style.width="44%"
                 input.style.display="inline"
                 input.style.marginRight="2%"
+                input.type="number"
                 input.name="preciomayor[]"
                 td=document.createElement('td')
                 td.appendChild(input)
                 tr.appendChild(td)
 
                 let p=document.createElement('p')
-                p.innerText="$12000"
+                p.innerText="$0"
                 p.style.color="#269c56f7"
                 p.style.display="inline"
                 td.appendChild(p)
                 let div=`
                 <div class="md-form">
-                <input disabled class="form-control" id="mayo${data.articulo}">
+                <input type="number" disabled class="form-control" id="mayo${data.articulo}">
                 <label style="max-width: max-content;" for="mayo${data.articulo}" class="active">Ganancia por mayor</label>
                 </div>
                 `
@@ -324,3 +328,35 @@ document.getElementById("mayoritario").addEventListener("change",()=>{
   });
 
 })
+
+
+function sumarTodoTodito() {
+  let todosLosTrProductos=document.querySelectorAll("#addProducto")
+  let costoBruto=0
+  let minoriTotal=0
+  let mayoriTotal=0
+  let p1
+  let p2
+  let input1=0
+  let input2=0
+  todosLosTrProductos[0].children.forEach(element => {
+    /* costo mas el porcentaje de minoritario */
+    costoBruto=parseFloat((element.children[2].children[1].value=="")?0:element.children[2].children[1].value)
+    minoriTotal=costoBruto*parseFloat((element.children[3].children[0].value=="")?0:element.children[3].children[0].value)/100+costoBruto
+    mayoriTotal=costoBruto*parseFloat((element.children[4].children[0].value=="")?0:element.children[4].children[0].value)/100+costoBruto
+    /* costo mas el porcentaje de mayoritario */
+    /* costo2=element.children[2].children[1].value* */
+    /* console.log(element.children[2].children[1]) */
+    p1=element.children[3].children[1].innerHTML="$"+minoriTotal
+    p2=element.children[4].children[1].innerHTML="$"+mayoriTotal
+    input1=element.children[3].children[2].children[0].value=(minoriTotal-costoBruto).toFixed(2)
+    input2=element.children[4].children[2].children[0].value=(mayoriTotal-costoBruto).toFixed(2)
+
+    console.log(element.children[3].children[2].children[0].value)
+    console.log(element.children[4].children[2].children[0].value)
+    console.log(costoBruto)
+    console.log(minoriTotal)
+    console.log(mayoriTotal)
+
+  });
+}
