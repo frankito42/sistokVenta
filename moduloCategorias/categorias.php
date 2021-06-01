@@ -221,6 +221,13 @@ $categoriasAll=$categoriasAll->fetchAll(PDO::FETCH_ASSOC);
  <!-- Central Modal Medium Danger-->
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
+
+<style>
+
+input[type="text"]{
+    text-transform:capitalize;
+}
+</style>
 <script src="../mdb/js/jquery.min.js"></script>
 <script src="../mdb/js/bootstrap.min.js"></script>
 <script src="../mdb/js/mdb.min.js"></script>

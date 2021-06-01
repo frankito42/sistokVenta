@@ -372,6 +372,7 @@ $(document).ready(async function(){
         descripcionNewA:document.getElementById("descripcionNewA"),
         categoriaNew:document.getElementById("categoriaNew"),
         laboratoriosSearch:document.getElementById("laboratoriosSearch"),
+        fechaVencimiento:document.getElementById("fechaVencimiento")
         /* codBarraNew:document.getElementById("codBarraNew") */
       };
       let articuloValues = {
@@ -381,7 +382,8 @@ $(document).ready(async function(){
         descripcionNewA:document.getElementById("descripcionNewA").value,
         categoriaNew:document.getElementById("categoriaNew").value,
         laboratoriosSearch:document.getElementById("laboratoriosSearch").value,
-        codBarraNew:document.getElementById("codBarraNew").value
+        codBarraNew:document.getElementById("codBarraNew").value,
+        fechaVencimiento:document.getElementById("fechaVencimiento").value
       };
       console.log(articulo)
       for (const property in articulo) {

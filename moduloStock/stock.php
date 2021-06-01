@@ -162,11 +162,23 @@ if(!isset($_SESSION['user'])){
 						
 					</div>
 				</div>
-				
-					<div class="md-form">
+                <div class="row">
+                    <div class="col">
+                    <div class="md-form">
   						<input required type="number" id="stockMinA" name="stockMinA" class="form-control">
   						<label for="stockMinA">Stock minino</label>
 					</div>
+
+                    </div>
+                    <div class="col">
+                    <div class="md-form">
+  						<input required type="date" placeholder="Fecha vencimiento" id="fechaVencimiento" name="fechaVencimiento" class="form-control">
+  						<!-- <label for="fechaVencimiento">Fecha de Vencimiento</label> -->
+					</div>
+
+                    </div>
+                </div>
+					
 
 				
 					<!-- <div class="md-form">
@@ -205,12 +217,17 @@ if(!isset($_SESSION['user'])){
                 <!-- ////////////////////////////////////////////////// -->
                 <!-- ////////////////////////////////////////////////// -->
 				</div>
-				<div class="col">
-					<div class="md-form">
-  						<input type="text" id="codBarraNew" name="codBarraNew" class="form-control">
-  						<label for="codBarraNew">Codigo de barra</label>
-					</div>
-				</div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="md-form">
+                                <input type="text" id="codBarraNew" name="codBarraNew" class="form-control">
+                                <label id="labelCodBarra" for="codBarraNew">Codigo de barra</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                        <a id="btnEscanear" class="btn btn-blue btn-lg"><i class="fa fa-camera"></i> <i class="fas fa-barcode"></i></a>
+                        </div>
+                    </div>
             </div> 
             <!-- /////////////////////////////ERROR ERROR//////////////////////////////////////////// -->
             <p id="erroAddNewProducto" class="animated" style="text-align:center;color:red;display: none;">Rellenar los campos vacios.</p>
@@ -364,10 +381,14 @@ li:hover{
 .caret{
   display:none;
 }
+input[type="text"]{
+    text-transform:capitalize;
+}
 </style>
 <script src="../mdb/js/jquery.min.js"></script>
 <script src="../mdb/js/bootstrap.min.js"></script>
 <script src="../mdb/js/mdb.min.js"></script>
 <script src="../mdb/js/all.min.js"></script>
 <script src="js/stock.js"></script>
+<script src="js/script.js"></script>
 </html> 

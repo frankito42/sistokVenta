@@ -108,6 +108,9 @@ $laboratoriosAll=$laboratoriosAll->fetchAll(PDO::FETCH_ASSOC);
 .grey-bg {  
     background-color: #F5F7FA;
 }
+input[type="text"]{
+    text-transform:capitalize;
+}
 </style>
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->

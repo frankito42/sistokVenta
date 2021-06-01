@@ -213,6 +213,12 @@ if(!isset($_SESSION['user'])){
    </div>
  </div>
  <!-- Central Modal Medium Danger-->
+ <style>
+
+input[type="text"]{
+    text-transform:capitalize;
+}
+ </style>
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
 <!-- ////////////////////////////////////MODAL MODAL MODAL MODAL//////////////////////////////// -->
 <script src="../mdb/js/jquery.min.js"></script>

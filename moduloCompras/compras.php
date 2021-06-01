@@ -329,6 +329,9 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+input[type=text]{
+    text-transform:capitalize;
+}
 </style>
 
 </html>
