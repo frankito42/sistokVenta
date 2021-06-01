@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2021 a las 17:59:37
+-- Tiempo de generación: 01-06-2021 a las 21:46:23
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.0
 
@@ -41,18 +41,23 @@ CREATE TABLE `articulos` (
   `idEsta` int(11) NOT NULL,
   `idProveedor` int(11) NOT NULL,
   `mayoritario` decimal(11,2) NOT NULL,
-  `keyTwoLabor` int(11) NOT NULL
+  `keyTwoLabor` int(11) NOT NULL,
+  `fechaVence` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `articulos`
 --
 
-INSERT INTO `articulos` (`articulo`, `nombre`, `costo`, `stockmin`, `cantidad`, `descripcion`, `imagen`, `categoria`, `codBarra`, `precioVenta`, `idEsta`, `idProveedor`, `mayoritario`, `keyTwoLabor`) VALUES
-(1, 'VACUNA DOG', '320.00', 10, 299, 'a', '', 19, '1', '528.00', 1, 7, '492.80', 1),
-(2, 'VACUNA CAT', '320.00', 10, 200, 'B', '', 20, '2', '528.00', 1, 7, '492.80', 1),
-(3, 'CREMA ARMADILLO', '22.00', 10, 111, 'D', '', 24, '3', '24.42', 1, 21, '24.42', 2),
-(4, 'VACUNA ARMADILLO', '22.00', 10, 111, 'A', '', 24, '', '24.42', 1, 7, '24.42', 0);
+INSERT INTO `articulos` (`articulo`, `nombre`, `costo`, `stockmin`, `cantidad`, `descripcion`, `imagen`, `categoria`, `codBarra`, `precioVenta`, `idEsta`, `idProveedor`, `mayoritario`, `keyTwoLabor`, `fechaVence`) VALUES
+(1, 'VACUNA DOG', '320.00', 10, 299, 'a', '', 19, '1', '528.00', 1, 7, '492.80', 1, NULL),
+(2, 'VACUNA CAT', '320.00', 10, 200, 'B', '', 20, '2', '528.00', 1, 7, '492.80', 1, NULL),
+(3, 'CREMA ARMADILLO', '22.00', 10, 111, 'D', '', 24, '3', '24.42', 1, 21, '24.42', 2, NULL),
+(4, 'VACUNA ARMADILLO', '22.00', 10, 111, 'A', '', 24, '', '24.42', 1, 7, '24.42', 0, NULL),
+(5, 'd', '0.00', 2, 0, 'a', '', 21, '12222222', '0.00', 1, 0, '0.00', 1, NULL),
+(6, 'd', '0.00', 2, 0, 'dsa', '', 21, '123333333333333333333', '0.00', 1, 0, '0.00', 3, NULL),
+(7, 'dddddddddddd', '0.00', 3, 0, 'a', '', 21, '8', '0.00', 1, 0, '0.00', 2, NULL),
+(8, 'pichini', '0.00', 22, 0, 's', '', 19, '123123123123', '0.00', 1, 0, '0.00', 1, '2023-02-03');
 
 -- --------------------------------------------------------
 
@@ -334,7 +339,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
