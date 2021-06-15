@@ -278,17 +278,47 @@ $proveedores=$proveedores->fetchAll(PDO::FETCH_ASSOC);
         </div>
     
       </div>
-      <div class="modal-footer">
+      <div style="position:relative;" class="modal-footer">
+
+
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a id="btnAbrirTransporte" class="btn btn-primary">Guardar</a>
+        <div style="width: 26%;position: absolute;right: -27%;top: -130%;padding: 0.5%;background: white;display:none;" id="modalTransporte" class="modalTransporte">
+            <div style="position:relative;" class="header">
+              <h4 style="background: #4285f4;color: white;padding: 4%;border-radius: 3px;">Transporte Total</h4>
+              <button id="cerrarTranport" style="position: absolute;right: -1%;top: 5%;" type="button" class="close" >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="body">
+            <div class="col">
+              <div class="md-form">
+                <input required type="text" id="transport" name="transport" class="form-control">
+                <label for="transport">Transporte $</label>
+              </div>
+              <div class="footer text-center">
+                <button type="submit" class="btn btn-success btn-sm">Guardar Factura</button>
+              </div>
+            </div>
+            </div>
+</div>
       </div>
-      </form>
     </div>
   </div>
+</div>
+
+</form>
 </div>
 <!-- Modal -->
     <!-- ////////////////////////////////////////////////////////////////////// -->
     <!-- ////////////////////////////////////////////////////////////////////// -->
+
+
+  
+
+
+
     <!-- ////////////////////////////////////////////////////////////////////// -->
     </section>
 
@@ -334,4 +364,70 @@ input[type=text]{
 }
 </style>
 
-</html>
+<script type="text/javascript">
+            var xInic, yInic;
+            var estaPulsado = false;
+            
+            function ratonPulsado(evt) { 
+                //Obtener la posición de inicio
+                xInic = evt.clientX;
+                yInic = evt.clientY;    
+                estaPulsado = true;
+                //Para Internet Explorer: Contenido no seleccionable
+                document.getElementById("modalTransporte").unselectable = true;
+            }
+            
+            function ratonMovido(evt) {
+                if(estaPulsado) {
+                    //Calcular la diferencia de posición
+                    var xActual = evt.clientX;
+                    var yActual = evt.clientY;    
+                    var xInc = xActual-xInic;
+                    var yInc = yActual-yInic;
+                    xInic = xActual;
+                    yInic = yActual;
+                    
+                    //Establecer la nueva posición
+                    var elemento = document.getElementById("modalTransporte");
+                    var position = getPosicion(elemento);
+                    elemento.style.top = (position[0] + yInc) + "px";
+                    elemento.style.left = (position[1] + xInc) + "px";
+                }
+            }
+            
+            function ratonSoltado(evt) {
+                estaPulsado = false;
+            }
+            
+            /*
+             * Función para obtener la posición en la que se encuentra el
+             * elemento indicado como parámetro.
+             * Retorna un array con las coordenadas x e y de la posición
+             */
+            function getPosicion(elemento) {
+                var posicion = new Array(2);
+                if(document.defaultView && document.defaultView.getComputedStyle) {
+                    posicion[0] = parseInt(document.defaultView.getComputedStyle(elemento, null).getPropertyValue("top"))
+                    posicion[1] = parseInt(document.defaultView.getComputedStyle(elemento, null).getPropertyValue("left"));
+                } else {
+                    //Para Internet Explorer
+                    posicion[0] = parseInt(elemento.currentStyle.top);             
+                    posicion[1] = parseInt(elemento.currentStyle.left);               
+                }      
+                return posicion;
+            }
+        </script>
+
+        <SCRIPT type="text/javascript">
+            var el = document.getElementById("modalTransporte");
+            if (el.addEventListener){
+                el.addEventListener("mousedown", ratonPulsado, false);
+                el.addEventListener("mouseup", ratonSoltado, false);
+                document.addEventListener("mousemove", ratonMovido, false);
+            } else { //Para IE
+                el.attachEvent('onmousedown', ratonPulsado);
+                el.attachEvent('onmouseup', ratonSoltado);
+                document.attachEvent('onmousemove', ratonMovido);
+            }            
+        </SCRIPT>  
+  

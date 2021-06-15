@@ -267,7 +267,10 @@ $(document).ready(async function(){
     <td>${element['nombreCategoria']}</td>
     <td>${element['nombreLaboratorio']}</td>
     
-    <td><button onclick="abrirModalEdit(${element['articulo']})" class="btn btn-blue">Editar</button></td>
+    <td style="display: contents;">
+    <button onclick="abrirModalEdit(${element['articulo']})" class="btn btn-blue">Editar</button>
+    <button onclick="deleteProduct(${element['articulo']},this)" class="btn btn-danger">Borrar</button>
+    </td>
     </tr>
     `
   });
@@ -562,4 +565,19 @@ $(document).ready(async function(){
     }
   }
   
+}
+async function deleteProduct(id,e) {
+  let a=confirm("Desea eleminar el producto?")
+  console.log(a)
+  if(a){
+    await fetch('php/deleteProducto.php?id='+id)
+      .then(response => response.json())
+      .then((data)=>{ 
+        if(data=="exito"){
+          console.log(data)
+          e.parentElement.parentElement.remove()
+        }
+      })
+  }
+    
 }
