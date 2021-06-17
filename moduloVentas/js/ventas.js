@@ -8,7 +8,7 @@ elInput.addEventListener('keypress', async (e) => {
 });
 
 
-async function cargarProductoTablaVenta(codi,idPro) {
+async function cargarProductoTablaVenta(codi,idPro,mayoriOminori) {
     let codigo
     if(codi){
         codigo=codi
@@ -20,7 +20,7 @@ async function cargarProductoTablaVenta(codi,idPro) {
         fetch('php/cargarArticulo.php?codigo='+codigo+'&idPro='+idPro)
         .then(response => response.json())
         .then((data)=> {
-            console.log(data)
+            /* console.log(data) */
 
             if(data==""){
                 alert("El producto no existe.")
@@ -43,8 +43,16 @@ async function cargarProductoTablaVenta(codi,idPro) {
                 input1.addEventListener("keyup",async ()=>{
                    await sumarTodo()
                 })
+                let maOmi
+                if (mayoriOminori=="mayo") {
+                    maOmi=data[0].mayoritario
+                    console.log(mayoriOminori +" entro en el si")
+                }else{
+                    maOmi=data[0].precioVenta
+                    console.log(mayoriOminori +" entro en el elseeeeeeeeeee")
+                }
     
-                input2.value=data[0].precioVenta
+                input2.value=maOmi
                 input2.type="number"
                 input2.style.width="87px"
                 input2.addEventListener("change",async ()=>{
@@ -58,13 +66,15 @@ async function cargarProductoTablaVenta(codi,idPro) {
                 input3.value=data[0].articulo
                 input3.style.display="none"
                 textoCelda1 = document.createTextNode(`${data[0].nombre}`);
-    
-                textoCelda4 = document.createTextNode(`${data[0].precioVenta}`);
+                /* console.log(mayoriOminori) */
+
+                
+                
                 celda1.appendChild(textoCelda1);
                 celda2.appendChild(input1);
                 celda2.appendChild(input3); 
                 celda3.appendChild(input2);
-                celda4.appendChild(textoCelda4);
+                
                 celda5.innerHTML=`<button onclick="deleteTdTable(this)" class="btn btn-danger btn-sm">x</button>`
                 
                 fila.appendChild(celda1);
@@ -186,10 +196,9 @@ async function listarTodosLosProductos() {
               data.forEach(element => {
                   elementos+=`
                   <tr>
-                    <td><button class="btn btn-blue btn-sm" onclick="cargarProductoTablaVenta('${(element.codBarra)?element.codBarra:'no'}',${element.articulo})"><i class="fas fa-plus fa-1x"></i></button></td>
                     <td>${element.nombre}</td>
-                    <td>$${element.precioVenta}</td>
-                    <td>$${element.mayoritario}</td>
+                    <td>$${element.precioVenta} <button class="btn btn-blue btn-sm" onclick="cargarProductoTablaVenta('${(element.codBarra)?element.codBarra:'no'}',${element.articulo})"><i class="fas fa-plus fa-1x"></i></button></td>
+                    <td>$${element.mayoritario} <button class="btn btn-blue btn-sm" onclick="cargarProductoTablaVenta('${(element.codBarra)?element.codBarra:'no'}',${element.articulo},'mayo')"><i class="fas fa-plus fa-1x"></i></button></td>
                   </tr>
                   `
               });

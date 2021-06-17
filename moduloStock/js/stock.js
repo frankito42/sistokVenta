@@ -267,7 +267,7 @@ $(document).ready(async function(){
     <td>${element['nombreCategoria']}</td>
     <td>${element['nombreLaboratorio']}</td>
     
-    <td style="display: contents;">
+    <td style="display: inherit;">
     <button onclick="abrirModalEdit(${element['articulo']})" class="btn btn-blue">Editar</button>
     <button onclick="deleteProduct(${element['articulo']},this)" class="btn btn-danger">Borrar</button>
     </td>

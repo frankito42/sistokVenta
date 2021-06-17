@@ -176,7 +176,6 @@ if(!isset($_SESSION['user'])){
                 <table id="mytable" class="table table-sm">
                     <thead>
                         <tr> 
-                        <th scope="col"></th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio por Menor</th>
                         <th scope="col">Precio por Mayor</th>

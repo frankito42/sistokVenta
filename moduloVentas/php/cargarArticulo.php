@@ -4,7 +4,7 @@ require "../../conn/conn.php";
 if ($_GET['codigo']=="no") {
     $sqlTraerArticulo="SELECT `articulo`, `nombre`, `costo`, `stockmin`,
                      `cantidad`, `descripcion`, `imagen`, `categoria`,
-                     `codBarra`, `precioVenta`, `idEsta`, `idProveedor`
+                     `codBarra`, `precioVenta`, `idEsta`, `idProveedor`,mayoritario
                       FROM `articulos` WHERE `articulo`=:id";
     $producto=$conn->prepare($sqlTraerArticulo);
     $producto->bindParam(":id",$_GET['idPro']);
@@ -13,7 +13,7 @@ if ($_GET['codigo']=="no") {
 } else {
     $sqlTraerArticulo="SELECT `articulo`, `nombre`, `costo`, `stockmin`,
                      `cantidad`, `descripcion`, `imagen`, `categoria`,
-                     `codBarra`, `precioVenta`, `idEsta`, `idProveedor`
+                     `codBarra`, `precioVenta`, `idEsta`, `idProveedor`,mayoritario
                       FROM `articulos` WHERE `codBarra`=:codigo";
     $producto=$conn->prepare($sqlTraerArticulo);
     $producto->bindParam(":codigo",$_GET['codigo']);
