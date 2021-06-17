@@ -344,6 +344,9 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=text]{
     text-transform:capitalize;
 }
+.modal-lg, .modal-xl {
+    max-width: 976px;
+}
 </style>
 </html>
   

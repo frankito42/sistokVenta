@@ -60,7 +60,7 @@ function addNewProductFrom(id) {
                 inputTranspo.className="form-control"
                 inputTranspo.required=true
                 inputTranspo.name="transporr[]"
-                inputTranspo.style.marginTop="25.6%"
+                inputTranspo.style.marginTop="18%"
                 inputTranspo.style.borderTop="none"
                 inputTranspo.style.borderLeft="none"
                 inputTranspo.style.borderRight="none"
