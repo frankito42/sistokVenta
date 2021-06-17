@@ -4,14 +4,14 @@ $factura=$_POST['factura'];
 /* $provedor=$_POST['provedor']; */
 $observacion=$_POST['observacion'];
 $idArticulo=$_POST['idArticulo'];
-$costo=$_POST['costo'];
 $cantidad=$_POST['cantidad'];
 $precioVenta=$_POST['precioventa']; 
 $fecha=date('Y-m-d');
 $idProve=$_POST['proveedor'];
 /* $keyLaboratorio=$_POST['laboratorio']; */
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-/* $transporte=$_POST['transporte'];  */
+$transporte=$_POST['transporr']; 
+$costo=$_POST['costo'];
 $preciomayor=$_POST['preciomayor']; 
 /* $minoritario=$_POST['minoritario']; 
 $mayoritario=$_POST['mayoritario'];  */
@@ -47,7 +47,7 @@ for ($i=0; $i < count($idArticulo) ; $i++) {
     $sellArticulo->bindParam(":id",$idArticulo[$i]);
     $sellArticulo->execute();
     $sellArticulo=$sellArticulo->fetch(PDO::FETCH_ASSOC);
-
+    $costo[$i]+=$transporte[$i];
     $sumaStock=$sellArticulo['cantidad']+$cantidad[$i];
 
     $sqlUpdateStock="UPDATE `articulos` SET `costo`=:costo, `cantidad`=:cantidad, `precioVenta`=:precioVenta,`idProveedor`=:idProveedor, `mayoritario`=:mayo WHERE `articulo`=:id";

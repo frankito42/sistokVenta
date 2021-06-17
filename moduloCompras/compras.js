@@ -34,6 +34,7 @@ function addNewProductFrom(id) {
                 input.className="form-control"
                 input.required=true
                 input.type="number"
+                input.step="0.01"
                 input.name="cantidad[]"
                 td=document.createElement('td')
                 td.appendChild(input)
@@ -44,22 +45,46 @@ function addNewProductFrom(id) {
                 let inputFantasma=document.createElement('input')
                 input.className="form-control"
                 input.required=true
-                input.type="text"
+                input.type="number"
+                input.step="0.01"
                 input.name="costo[]"
                 input.onkeyup=sumarTodoTodito
                 input.value=0
                 inputFantasma.value=data.articulo
                 inputFantasma.name="idArticulo[]"
                 inputFantasma.style.display="none"
+                let inputTranspo=document.createElement('input')
+                inputTranspo.type="number"
+                inputTranspo.step="0.01"
+                inputTranspo.onkeyup=sumarTodoTodito
+                inputTranspo.className="form-control"
+                inputTranspo.required=true
+                inputTranspo.name="transporr[]"
+                inputTranspo.style.marginTop="25.6%"
+                inputTranspo.style.borderTop="none"
+                inputTranspo.style.borderLeft="none"
+                inputTranspo.style.borderRight="none"
+                inputTranspo.style.borderRadius="0px"
+                inputTranspo.style.background="#ffffff00"
+                let ppTranspo=document.createElement("p")
+                ppTranspo.style.position="absolute"
+                ppTranspo.style.top="42%"
+                ppTranspo.innerHTML="Transporte"
+           
+
+                tr.style.position="relative"
                 td=document.createElement('td')
                 td.appendChild(inputFantasma)
                 td.appendChild(input)
+                td.appendChild(inputTranspo)
+                td.appendChild(ppTranspo)
                 tr.appendChild(td)
                 
             }else if(index==4){
               
               let input2=document.createElement('input')
-              input2.type = "text";
+              input2.type = "number";
+              input2.step="0.01"
               input2.name = "precioventa[]";
               input2.style.display="none"
               
@@ -69,7 +94,8 @@ function addNewProductFrom(id) {
                 input.style.width="44%"
                 input.style.display="inline"
                 input.style.marginRight="2%"
-                input.type="text"
+                input.type="number"
+                input.step="0.01"
                 input.onkeyup = sumarTodoTodito;
 
 
@@ -87,7 +113,7 @@ function addNewProductFrom(id) {
                 td.appendChild(p)
                 let div=`
                 <div class="md-form">
-                <input type="text" disabled class="form-control" id="meno${data.articulo}">
+                <input type="number" step="0.01" disabled class="form-control" id="meno${data.articulo}">
                 <label style="max-width: max-content;" for="meno${data.articulo}" class="active">Ganancia por menor</label>
                 <span style="position: absolute;top: -190%;background: #5cd1ff99;padding: 2%;border-radius: 5px;color: #ff023d;">%</span>
                 </div>
@@ -99,7 +125,8 @@ function addNewProductFrom(id) {
                 td.appendChild(input2);
             }else if(index==5){
                 let input2 = document.createElement("input");
-                input2.type = "text";
+                input2.type = "number";
+                input2.step="0.01"
                 input2.name = "preciomayor[]";
                 input2.onkeyup = sumarTodoTodito;
                 input2.style.display = "none";
@@ -109,7 +136,8 @@ function addNewProductFrom(id) {
                 let input3 = document.createElement("input");
                 input3.className="form-control"
                 input3.required=true
-                input3.type = "text";
+                input3.type = "number";
+                input3.step="0.01"
                 input3.style.width="44%"
                 input3.style.display="inline"
                 input3.style.marginRight="2%"
@@ -129,7 +157,7 @@ function addNewProductFrom(id) {
                 td.appendChild(p)
                 let div=`
                 <div class="md-form">
-                <input type="number" disabled class="form-control" id="mayo${data.articulo}">
+                <input type="number" step="0.01" disabled class="form-control" id="mayo${data.articulo}">
                 <label style="max-width: max-content;" for="mayo${data.articulo}" class="active">Ganancia por mayor</label>
                 <span style="position: absolute;top: -190%;background: #5cd1ff99;padding: 2%;border-radius: 5px;color: #ff023d;">%</span>
                 </div>
@@ -340,9 +368,12 @@ function sumarTodoTodito() {
   let p2
   let input1=0
   let input2=0
+  let transpo
   todosLosTrProductos[0].children.forEach(element => {
     /* costo mas el porcentaje de minoritario */
-    costoBruto=parseFloat((element.children[2].children[1].value=="")?0:element.children[2].children[1].value)
+
+    transpo=parseFloat((element.children[2].children[2].value=="")?0:element.children[2].children[2].value)
+    costoBruto=parseFloat((element.children[2].children[1].value=="")?0:element.children[2].children[1].value)+transpo
     minoriTotal=costoBruto*parseFloat((element.children[3].children[0].value=="")?0:element.children[3].children[0].value)/100+costoBruto
     mayoriTotal=costoBruto*parseFloat((element.children[4].children[0].value=="")?0:element.children[4].children[0].value)/100+costoBruto
     /* costo mas el porcentaje de mayoritario */
@@ -354,12 +385,12 @@ function sumarTodoTodito() {
     input2=element.children[4].children[2].children[0].value=(mayoriTotal-costoBruto).toFixed(2)
 
     /* PRECIO DE VENTA MINORITARIO TOTAL */
-    element.children[3].children[3].value = minoriTotal;
+    element.children[3].children[3].value = minoriTotal.toFixed(2);
     /* PRECIO DE VENTA mayoritario TOTAL */
-    element.children[4].children[3].value = mayoriTotal;
+    element.children[4].children[3].value = mayoriTotal.toFixed(2);
 
-    /* console.log(element.children[3].children[3])
-    console.log(element.children[4].children[3])
+    /* console.log(element.children[2].children[2].value) */
+  /*   console.log(element.children[4].children[3])
     console.log(costoBruto)
     console.log(minoriTotal)
     console.log(mayoriTotal) */
@@ -369,61 +400,3 @@ function sumarTodoTodito() {
 
 
 
-document.getElementById("btnAbrirTransporte").addEventListener("click",()=>{
-  document.getElementById("modalTransporte").style.display="block"
-})
-document.getElementById("cerrarTranport").addEventListener("click",()=>{
-  document.getElementById("modalTransporte").style.display="none"
-})
-
-
-
-
-
-
-document.getElementById("transport").addEventListener("keypress",(e)=>{
-  
-  let todosLosTrProductos=document.querySelectorAll("#addProducto")
-  let cantidad=0
-  let cantidadNula=0
-  let transpo=(document.getElementById("transport").value=="")?0:document.getElementById("transport").value
-  
-
-  /* ////////////////////////////////////////////////// */
-  /* ///////////////SUMO LAS CANTIDADES////////////////////// */
-  console.log(e)
-  if(e.key=="Enter"){
-    e.preventDefault()
-    
-    todosLosTrProductos[0].children.forEach((element)=>{
-      console.log(element.children[2].children[1])
-      element.children[2].children[1].value=parseFloat((element.children[2].children[1].value=="")?0:element.children[2].children[1].value)-parseFloat(divicion)  
-      cantidad+=parseInt((element.children[1].children[0].value=="")?0:element.children[1].children[0].value)
-      /* costo */
-      if(element.children[1].children[0].value==""||element.children[1].children[0].value==null||element.children[1].children[0].value==0){
-        cantidadNula=1
-      }
-    })
-    if(cantidadNula!=1 && transpo>=1){
-        /* ///////////////////////////////////////////////////////// */
-        /* ///////////////////////////////////////////////////////// */
-        divicion=parseFloat(transpo/cantidad)
-        
-        todosLosTrProductos[0].children.forEach((element)=>{
-          element.children[2].children[1].value=parseInt((element.children[2].children[1].value=="")?0:element.children[2].children[1].value)+parseFloat(divicion)
-        })
-        
-
-        
-        console.log(divicion)
-        console.log(document.getElementById("transport").value)
-        sumarTodoTodito()
-      }else{
-        if(transpo==0){
-          alert("Rellenar el transporte.")
-        }else{
-          alert("Rellenar todos los campos.")
-        }
-      }
-}
-})
