@@ -9,8 +9,19 @@ function addNewProductFrom(id) {
 
         let tablaEscondida=document.getElementById("tablaEscondida").style.display="block"
         let tbody=document.getElementById("addProducto")
+        let primerHijo=tbody.firstChild
         
         
+
+
+
+
+
+
+
+
+
+
         let tr=document.createElement('tr')
         
         for (let index = 0; index <= 6; index++) {
@@ -175,7 +186,7 @@ function addNewProductFrom(id) {
 
         }
 
-        tbody.appendChild(tr)
+        tbody.insertBefore(tr, primerHijo);
         
         let borrar=document.getElementsByClassName("borrar")
 
