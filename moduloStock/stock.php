@@ -118,6 +118,7 @@ if(!isset($_SESSION['user'])){
                         <th>Establecimiento</th>
                         <th>Categoria</th>
                         <th>Laboratorio</th>
+                        <th>Vence</th>
                       <!--   <th>Img</th> -->
                         <th>Acción</th>
                     </thead>
