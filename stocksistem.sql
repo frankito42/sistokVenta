@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2021 a las 21:46:23
+-- Tiempo de generación: 18-07-2021 a las 17:56:10
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.0
 
@@ -50,14 +50,9 @@ CREATE TABLE `articulos` (
 --
 
 INSERT INTO `articulos` (`articulo`, `nombre`, `costo`, `stockmin`, `cantidad`, `descripcion`, `imagen`, `categoria`, `codBarra`, `precioVenta`, `idEsta`, `idProveedor`, `mayoritario`, `keyTwoLabor`, `fechaVence`) VALUES
-(1, 'VACUNA DOG', '320.00', 10, 299, 'a', '', 19, '1', '528.00', 1, 7, '492.80', 1, NULL),
-(2, 'VACUNA CAT', '320.00', 10, 200, 'B', '', 20, '2', '528.00', 1, 7, '492.80', 1, NULL),
-(3, 'CREMA ARMADILLO', '22.00', 10, 111, 'D', '', 24, '3', '24.42', 1, 21, '24.42', 2, NULL),
-(4, 'VACUNA ARMADILLO', '22.00', 10, 111, 'A', '', 24, '', '24.42', 1, 7, '24.42', 0, NULL),
-(5, 'd', '0.00', 2, 0, 'a', '', 21, '12222222', '0.00', 1, 0, '0.00', 1, NULL),
-(6, 'd', '0.00', 2, 0, 'dsa', '', 21, '123333333333333333333', '0.00', 1, 0, '0.00', 3, NULL),
-(7, 'dddddddddddd', '0.00', 3, 0, 'a', '', 21, '8', '0.00', 1, 0, '0.00', 2, NULL),
-(8, 'pichini', '0.00', 22, 0, 's', '', 19, '123123123123', '0.00', 1, 0, '0.00', 1, '2023-02-03');
+(1, 'VACUNA DOG', '30.00', 10, 315, 'a', '', 19, '7798113301611', '48.00', 1, 21, '42.00', 1, NULL),
+(2, 'VACUNA CAT', '30.00', 10, 236, 'B', '', 20, '2', '48.00', 1, 21, '42.00', 1, NULL),
+(4, 'VACUNA ARMADILLO', '30.00', 10, 113, 'A', '', 24, '', '48.00', 1, 21, '42.00', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -134,7 +129,13 @@ INSERT INTO `entrada` (`idEntrada`, `fecha`, `nFactura`, `observacion`, `idProve
 (4, '2021-05-18', '123123', 'asd', 7, 0, '11'),
 (5, '2021-05-18', 'asd', 'asd', 21, 0, '11'),
 (6, '2021-05-21', '55', 'l', 21, 0, '10'),
-(7, '2021-05-27', '555', '', 7, 0, '0');
+(7, '2021-05-27', '555', '', 7, 0, '0'),
+(8, '2021-06-01', '001', 'asd', 25, 0, '0'),
+(9, '2021-06-08', 'as', 'asd', 7, 0, '0'),
+(10, '2021-06-14', 'asdasdasd asdasdasd', 'asd', 21, 0, '0'),
+(11, '2021-06-14', '55555', 'sd', 25, 0, '0'),
+(12, '2021-06-14', 'Prueba 1', 'sda', 25, 0, '0'),
+(13, '2021-06-14', 'asd', 'asd', 21, 0, '0');
 
 -- --------------------------------------------------------
 
@@ -182,7 +183,18 @@ INSERT INTO `facturaentrada` (`id`, `idEntrada`, `idArticulo`, `cantidad`, `fech
 (5, 5, 3, 11, '2021-05-18', 22, '0'),
 (6, 6, 1, 100, '2021-05-21', 1010, '0'),
 (7, 7, 1, 100, '2021-05-27', 320, '0'),
-(8, 7, 2, 100, '2021-05-27', 320, '0');
+(8, 7, 2, 100, '2021-05-27', 320, '0'),
+(9, 8, 3, 100, '2021-06-01', 500, '0'),
+(10, 9, 2, 20, '2021-06-08', 300, '0'),
+(11, 10, 1, 2, '2021-06-14', 10, '0'),
+(12, 10, 2, 2, '2021-06-14', 10, '0'),
+(13, 11, 1, 2, '2021-06-14', 10, '0'),
+(14, 11, 2, 2, '2021-06-14', 10, '0'),
+(15, 12, 1, 10, '2021-06-14', 25, '0'),
+(16, 12, 2, 10, '2021-06-14', 25, '0'),
+(17, 13, 2, 2, '2021-06-14', 30, '0'),
+(18, 13, 1, 2, '2021-06-14', 30, '0'),
+(19, 13, 4, 2, '2021-06-14', 30, '0');
 
 -- --------------------------------------------------------
 
@@ -339,7 +351,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -357,7 +369,7 @@ ALTER TABLE `detalleventa`
 -- AUTO_INCREMENT de la tabla `entrada`
 --
 ALTER TABLE `entrada`
-  MODIFY `idEntrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idEntrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `establecimiento`
@@ -369,7 +381,7 @@ ALTER TABLE `establecimiento`
 -- AUTO_INCREMENT de la tabla `facturaentrada`
 --
 ALTER TABLE `facturaentrada`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `laboratorios`
