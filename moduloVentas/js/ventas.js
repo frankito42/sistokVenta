@@ -99,6 +99,8 @@ async function cargarProductoTablaVenta(codi,idPro,mayoriOminori) {
             }
 
         });
+        /* escondo el modal al hacer click en un boton */
+        $("#mostarProductElegir").modal("hide")
     }else{
         alert("Agregue codigo de barra.")
     }

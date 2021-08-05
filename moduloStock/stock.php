@@ -111,7 +111,7 @@ if(!isset($_SESSION['user'])){
             <table id="mytable" class="table table-hover">
                     <thead style="background: #19d6f5b0;">
                         <th>Nombre</th>
-                        <!-- <th>Costo</th> -->
+                        <th>Costo</th>
                         <th style="white-space: nowrap;">Precio por menor</th>
                         <th>Precio por mayor</th>
                         <th>Stock</th>

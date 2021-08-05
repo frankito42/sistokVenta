@@ -1,6 +1,8 @@
 <?php
 require "../conn/conn.php";
 $factura=$_POST['factura'];
+$menorCentaje=$_POST['meno'];
+$mayorCentaje=$_POST['mayo'];
 /* $provedor=$_POST['provedor']; */
 $observacion=$_POST['observacion'];
 $idArticulo=$_POST['idArticulo'];
@@ -50,7 +52,7 @@ for ($i=0; $i < count($idArticulo) ; $i++) {
     $costo[$i]+=$transporte[$i];
     $sumaStock=$sellArticulo['cantidad']+$cantidad[$i];
 
-    $sqlUpdateStock="UPDATE `articulos` SET `costo`=:costo, `cantidad`=:cantidad, `precioVenta`=:precioVenta,`idProveedor`=:idProveedor, `mayoritario`=:mayo WHERE `articulo`=:id";
+    $sqlUpdateStock="UPDATE `articulos` SET `costo`=:costo, `cantidad`=:cantidad, `precioVenta`=:precioVenta,`idProveedor`=:idProveedor, `mayoritario`=:mayo,menorCentaje=:menorPorcentaje,mayorCentaje=:mayorPorcentaje WHERE `articulo`=:id";
     $upCantidad=$conn->prepare($sqlUpdateStock);
     $upCantidad->bindParam(":id",$idArticulo[$i]);
     $upCantidad->bindParam(":precioVenta",$precioVenta[$i]);
@@ -59,6 +61,8 @@ for ($i=0; $i < count($idArticulo) ; $i++) {
     $upCantidad->bindParam(":idProveedor",$idProve);
  /*    $upCantidad->bindParam(":labor",$keyLaboratorio); */
     $upCantidad->bindParam(":mayo",$preciomayor[$i]);
+    $upCantidad->bindParam(":menorPorcentaje",$menorCentaje[$i]);
+    $upCantidad->bindParam(":mayorPorcentaje",$mayorCentaje[$i]);
     $upCantidad->execute();
     
     /* INSERTO EN FACTURA ENTRADA LOS PRODUCTOS QUE INGRESARON */

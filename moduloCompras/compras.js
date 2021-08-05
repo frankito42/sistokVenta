@@ -6,7 +6,7 @@ function addNewProductFrom(id) {
     fetch('traerArticulo.php?id='+id)
     .then(response => response.json())
     .then((data)=>{ 
-
+      console.log(data)
         let tablaEscondida=document.getElementById("tablaEscondida").style.display="block"
         let tbody=document.getElementById("addProducto")
         let primerHijo=tbody.firstChild
@@ -60,7 +60,7 @@ function addNewProductFrom(id) {
                 input.step="0.01"
                 input.name="costo[]"
                 input.onkeyup=sumarTodoTodito
-                input.value=0
+                input.value=data.costo
                 inputFantasma.value=data.articulo
                 inputFantasma.name="idArticulo[]"
                 inputFantasma.style.display="none"
@@ -102,11 +102,13 @@ function addNewProductFrom(id) {
               let input=document.createElement('input')
                 input.className="form-control"
                 input.required=true
+                input.name="meno[]"
                 input.style.width="44%"
                 input.style.display="inline"
                 input.style.marginRight="2%"
                 input.type="number"
                 input.step="0.01"
+                input.value=data.menorCentaje
                 input.onkeyup = sumarTodoTodito;
 
 
@@ -147,11 +149,13 @@ function addNewProductFrom(id) {
                 let input3 = document.createElement("input");
                 input3.className="form-control"
                 input3.required=true
+                input3.name="mayo[]"
                 input3.type = "number";
                 input3.step="0.01"
                 input3.style.width="44%"
                 input3.style.display="inline"
                 input3.style.marginRight="2%"
+                input3.value=data.mayorCentaje
                 input3.onkeyup = sumarTodoTodito;
                 td=document.createElement('td')
                 
@@ -203,6 +207,8 @@ function addNewProductFrom(id) {
                 }
             })
     });
+
+    sumarTodoTodito()
     
     });
 

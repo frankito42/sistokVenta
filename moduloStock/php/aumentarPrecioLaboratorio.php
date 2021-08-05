@@ -12,13 +12,12 @@ $porcentaje=$_GET['porcentaje'];
 
 
 foreach ($articulos as $key) {
-    $aumento=($key['precioVenta']*$porcentaje/100)+$key['precioVenta'];
-    $aumento2=($key['mayoritario']*$porcentaje/100)+$key['mayoritario'];
-    $sqlUpdateArticulo="UPDATE `articulos` SET `precioVenta`=:precio, `mayoritario`=:ma
+    $aumento=($key['costo']*$porcentaje/100)+$key['costo'];
+    /* $aumento2=($key['mayoritario']*$porcentaje/100)+$key['mayoritario']; */
+    $sqlUpdateArticulo="UPDATE `articulos` SET `costo`=:costo
                                                  WHERE `articulo`=:articulo";
     $editProducto=$conn->prepare($sqlUpdateArticulo);
-    $editProducto->bindParam(":precio",$aumento);
-    $editProducto->bindParam(":ma",$aumento2);
+    $editProducto->bindParam(":costo",$aumento);
     $editProducto->bindParam(":articulo",$key['articulo']);
     
     $editProducto->execute();

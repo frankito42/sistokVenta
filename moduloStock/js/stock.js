@@ -120,7 +120,9 @@ $(document).ready(async function(){
   /* creo el select de categorias en el modal editar */
 
     if(document.getElementById(`articulo${id}`)){
-      $(document.getElementById(`articulo${id}`)).modal("show")
+      /* borro el modal y vulevo a llamar a la funcion para crear uno nuevo */
+      document.getElementById(`articulo${id}`).remove()
+      abrirModalEdit(id)
     }else{
       let optionsCategoria=``
       todosLosArticulosCategorias[0].forEach(element => {
@@ -261,6 +263,7 @@ $(document).ready(async function(){
       tablaArticulos+=`
       <tr style="background: #ff000030;">
       <td>${element['nombre']}</td>
+      <td>${element['costo']}</td>
       <td>${element['precioVenta']}</td>
       <td>${element['mayoritario']}</td>
       <td>${element['cantidad']}</td>
@@ -279,6 +282,7 @@ $(document).ready(async function(){
       tablaArticulos+=`
       <tr>
       <td>${element['nombre']}</td>
+      <td>${element['costo']}</td>
       <td>${element['precioVenta']}</td>
       <td>${element['mayoritario']}</td>
       <td>${element['cantidad']}</td>
